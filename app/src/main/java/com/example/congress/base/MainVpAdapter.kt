@@ -7,7 +7,7 @@ import com.example.congress.mypage.MyPageFragment
 import com.example.congress.news.NewsFragment
 
 class MainVpAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-    val fragments = listOf(NewsFragment(),MyPageFragment())
+    private val fragments = listOf(NewsFragment(),MyPageFragment())
     override fun getItemCount(): Int {
         return fragments.size
     }
