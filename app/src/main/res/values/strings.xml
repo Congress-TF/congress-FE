@@ -2,4 +2,5 @@
     <string name="app_name">congress</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">852618694713-i9phjimqbsrgf2qbs3262rllmi9o0jbp.apps.googleusercontent.com</string>
 </resources>
