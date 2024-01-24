@@ -1,29 +1,29 @@
 package com.example.congress.presentation.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import com.example.congress.R
 import com.example.congress.databinding.ActivityMainBinding
 import com.example.congress.presentation.adapter.MainVpAdapter
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.congress.presentation.base.BaseActivity
+import com.example.congress.presentation.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+    val mainVM by viewModels<LoginViewModel>()
 
-    private lateinit var binding: ActivityMainBinding
+
     private val vpAdapter = MainVpAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initView()
+    }
+
+    override fun setupInit() {
 
     }
 
-    private fun initView() {
-        val tabsName = listOf("News", "MyPage", "TimeLine","Rank","MyPage")
-        binding.vpMain.adapter = vpAdapter
-        binding.vpMain.isUserInputEnabled = false
-        TabLayoutMediator(binding.tabLayout, binding.vpMain) { tab, position ->
-            tab.text = tabsName[position]
-        }.attach()
+    override fun subscribeUi() {
+        super.subscribeUi()
     }
 }

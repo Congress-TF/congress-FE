@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity (
+abstract class BaseActivity<T: ViewDataBinding> (
     @LayoutRes val layoutId: Int
 ): AppCompatActivity() {
     protected lateinit var binding: ViewDataBinding
@@ -16,5 +16,18 @@ abstract class BaseActivity (
 
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
+
+        setupInit()
+        subscribeUi()
     }
+
+    protected open fun setupInit() {
+
+    }
+
+    protected open fun subscribeUi() {
+
+    }
+
+
 }

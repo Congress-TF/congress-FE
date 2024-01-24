@@ -55,8 +55,8 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this,"else",Toast.LENGTH_SHORT).show()
             }
         }
-        binding.btnLogin.setOnClickListener { googleLogin() }
-        binding.token.setOnClickListener { Log.e(TAG,"${firebase.auth!!.currentUser!!.uid}") }
+        binding.tvSignWithGoogle.setOnClickListener { googleLogin() }
+        binding.ivSignWithGoogle.setOnClickListener { Log.e(TAG,"${firebase.auth!!.currentUser!!.uid}") }
     }
 
     private fun googleLogin() {

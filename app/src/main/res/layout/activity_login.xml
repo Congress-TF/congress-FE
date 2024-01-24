@@ -6,31 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.auth.LoginActivity">
 
-    <TextView
-        android:id="@+id/tv_login_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="@string/login_title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
     <ImageView
         android:id="@+id/iv_login_logo"
         android:layout_width="194dp"
         android:layout_height="194dp"
-        android:layout_marginTop="108dp"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_title"
-        android:contentDescription="@null" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_sign_with_google"
@@ -43,6 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_login_logo" />
 
     <ImageView
+        android:id="@+id/iv_sign_with_google"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
