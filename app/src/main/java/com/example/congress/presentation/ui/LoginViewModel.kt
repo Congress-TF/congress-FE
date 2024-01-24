@@ -1,4 +1,4 @@
-package com.example.congress.presentation.viewmodel
+package com.example.congress.presentation.ui
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

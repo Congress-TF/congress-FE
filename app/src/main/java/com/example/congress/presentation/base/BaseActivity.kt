@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity<T: ViewDataBinding> (
-    @LayoutRes val layoutId: Int
-): AppCompatActivity() {
-    protected lateinit var binding: ViewDataBinding
+abstract class BaseActivity<T : ViewDataBinding>(
+    @LayoutRes val layoutId: Int,
+) : AppCompatActivity() {
+    protected lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,17 +17,8 @@ abstract class BaseActivity<T: ViewDataBinding> (
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
 
-        setupInit()
-        subscribeUi()
+        initView()
     }
 
-    protected open fun setupInit() {
-
-    }
-
-    protected open fun subscribeUi() {
-
-    }
-
-
+    protected open fun initView() {}
 }

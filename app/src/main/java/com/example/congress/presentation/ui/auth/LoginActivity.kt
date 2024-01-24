@@ -1,76 +1,74 @@
 package com.example.congress.presentation.ui.auth
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.congress.R
 import com.example.congress.databinding.ActivityLoginBinding
-import com.example.congress.presentation.util.FirebaseAuth
+import com.example.congress.presentation.base.BaseActivity
+import com.example.congress.presentation.ui.main.MainActivity
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.google.android.gms.common.api.Scope
+import dagger.hilt.android.AndroidEntryPoint
 
-class LoginActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+    private val googleSignInClient: GoogleSignInClient by lazy { getGoogleClient() }
+    private val googleAuthLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
 
-    private val firebase = FirebaseAuth()
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var getResult: ActivityResultLauncher<Intent>
+        try {
+            val account = task.getResult(ApiException::class.java)
 
-    companion object {
-        const val TAG = "googleLogin"
+            val userName = account.givenName
+            Log.d("로그인", account.id.toString())
+
+            moveSignUpActivity()
+
+        } catch (e: ApiException) {
+
+        }
     }
-
-    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == RESULT_OK) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-                try {
-                    val account = task.getResult(ApiException::class.java)
-                    firebase.firebaseAuthWithGoogle(account!!.idToken!!)
-                    Log.d("token","${task.result.idToken}")
-                    Log.e("other","${task.result.email}")
-                    Toast.makeText(this,"success",Toast.LENGTH_SHORT).show()
+        initView()
+    }
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        setResult(Activity.RESULT_OK,intent)
-                        finish()
-                    }
-                } catch (e: ApiException) {
-                    Toast.makeText(this,"api error",Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this,"else",Toast.LENGTH_SHORT).show()
-            }
+    override fun initView() {
+        super.initView()
+        binding.ivSignWithGoogle.setOnClickListener {
+            loginGoogle()
         }
-        binding.tvSignWithGoogle.setOnClickListener { googleLogin() }
-        binding.ivSignWithGoogle.setOnClickListener { Log.e(TAG,"${firebase.auth!!.currentUser!!.uid}") }
     }
 
-    private fun googleLogin() {
-        setGoogleLogin()
+    private fun loginGoogle() {
+        googleSignInClient.signOut()
         val signInIntent = googleSignInClient.signInIntent
-        getResult.launch(signInIntent)
+        googleAuthLauncher.launch(signInIntent)
     }
 
-    private fun setGoogleLogin() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+    private fun getGoogleClient() : GoogleSignInClient {
+        val googleSignInOption = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestScopes(Scope("https://www.googleapis.com/auth/pubsub"))
+            .requestServerAuthCode(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        return GoogleSignIn.getClient(this, googleSignInOption)
     }
 
+    private fun moveSignUpActivity() {
+        run {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
 }
