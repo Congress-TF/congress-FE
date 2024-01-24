@@ -25,6 +25,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".presentation.ui.auth.SignUpActivity"
+            android:exported="false"/>
+        <activity
             android:name=".presentation.ui.main.MainActivity"
             android:exported="true">
 
