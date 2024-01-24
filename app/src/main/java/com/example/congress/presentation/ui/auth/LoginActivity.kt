@@ -1,4 +1,4 @@
-package com.example.congress.auth
+package com.example.congress.presentation.ui.auth
 
 import android.app.Activity
 import android.content.Intent
@@ -10,19 +10,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.congress.R
 import com.example.congress.databinding.ActivityLoginBinding
+import com.example.congress.presentation.util.FirebaseAuth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -61,8 +55,8 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this,"else",Toast.LENGTH_SHORT).show()
             }
         }
-        binding.btnLogin.setOnClickListener { googleLogin() }
-        binding.token.setOnClickListener { Log.e(TAG,"${firebase.auth!!.currentUser!!.uid}") }
+        binding.tvSignWithGoogle.setOnClickListener { googleLogin() }
+        binding.ivSignWithGoogle.setOnClickListener { Log.e(TAG,"${firebase.auth!!.currentUser!!.uid}") }
     }
 
     private fun googleLogin() {

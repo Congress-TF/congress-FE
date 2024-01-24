@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="20dp"
     android:paddingTop="10dp"
-    tools:context=".news.NewsFragment">
+    tools:context=".presentation.ui.news.NewsFragment">
 
     <SearchView
         android:id="@+id/sv_news_search"

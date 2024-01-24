@@ -1,18 +1,14 @@
-package com.example.congress.mypage
+package com.example.congress.presentation.ui.mypage
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.congress.R
-import com.example.congress.auth.LoginActivity
 import com.example.congress.databinding.FragmentMyPageBinding
-import com.example.congress.databinding.FragmentNewsBinding
+import com.example.congress.presentation.ui.auth.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 

@@ -8,4 +8,6 @@
     <string name="query_hint">원하는 주제를 검색하세요</string>
     <string name="recommend_button_text_long">추천 검색어</string>
     <string name="recommend_button_text_short">단어</string>
+    <string name="login_title">로그인</string>
+    <string name="login_sign_with_google">구글 계정으로 로그인</string>
 </resources>

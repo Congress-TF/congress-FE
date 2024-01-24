@@ -1,16 +1,17 @@
-package com.example.congress.news
+package com.example.congress.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.congress.base.ViewType
+import com.example.congress.presentation.util.ViewType
 import com.example.congress.databinding.ItemNewsListBinding
-import com.example.congress.news.holder.NewsListHolder
+import com.example.congress.data.model.NewsModel
+import com.example.congress.presentation.adapter.holder.NewsListHolder
 
 class NewsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val items = mutableListOf<NewsData>()
+    private val items = mutableListOf<NewsModel>()
 
-    fun addAll(item: MutableList<NewsData>) {
+    fun addAll(item: MutableList<NewsModel>) {
         items.addAll(0, item)
         notifyItemRangeInserted(0, itemCount)
     }
