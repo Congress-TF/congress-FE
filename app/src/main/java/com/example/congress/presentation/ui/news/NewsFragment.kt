@@ -1,4 +1,4 @@
-package com.example.congress.news
+package com.example.congress.presentation.ui.news
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,17 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.congress.R
+import com.example.congress.data.model.NewsModel
 import com.example.congress.databinding.FragmentNewsBinding
+import com.example.congress.presentation.adapter.NewsListAdapter
 
 class NewsFragment : Fragment() {
 
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
     private var adapter = NewsListAdapter()
-    private var sampleList = mutableListOf<NewsData>(NewsData(1, mainText = "안녕하세요sdasdasfddfsshsdfgsfdhhdsfhfs", subText = "안녕"),NewsData(1, mainText = "안녕하세요", subText = "안녕"),NewsData(1, mainText = "안녕하세요", subText = "안녕"),NewsData(1, mainText = "안녕하세요4", subText = "안녕4"))
+    private var sampleList = mutableListOf<NewsModel>(
+        NewsModel(1, mainText = "안녕하세요sdasdasfddfsshsdfgsfdhhdsfhfs", subText = "안녕"),
+        NewsModel(1, mainText = "안녕하세요", subText = "안녕"),
+        NewsModel(1, mainText = "안녕하세요", subText = "안녕"),
+        NewsModel(1, mainText = "안녕하세요4", subText = "안녕4")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

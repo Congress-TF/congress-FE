@@ -1,6 +1,6 @@
-package com.example.congress.news
+package com.example.congress.data.model
 
-data class NewsData(
+data class NewsModel(
     var type: Int,
     var image: String? = null,
     var mainText: String? = null,

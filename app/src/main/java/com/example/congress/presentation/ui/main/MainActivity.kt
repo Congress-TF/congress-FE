@@ -1,8 +1,9 @@
-package com.example.congress.base
+package com.example.congress.presentation.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.congress.databinding.ActivityMainBinding
+import com.example.congress.presentation.adapter.MainVpAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {

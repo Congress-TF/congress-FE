@@ -1,4 +1,4 @@
-package com.example.congress.auth
+package com.example.congress.presentation.util
 
 import android.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
