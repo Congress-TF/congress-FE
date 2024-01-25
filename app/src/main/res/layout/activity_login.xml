@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.example.congress.presentation.ui.auth.LoginActivity" />
+            type="com.example.congress.presentation.ui.login.LoginActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.auth.LoginActivity">
+        tools:context=".presentation.ui.login.LoginActivity">
 
 
         <ImageView

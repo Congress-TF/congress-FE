@@ -74,7 +74,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
-
+    implementation("com.jakewharton.timber:timber:5.0.1")
 }
 
 kapt {

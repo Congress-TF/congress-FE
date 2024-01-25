@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.congress.databinding.FragmentMyPageBinding
-import com.example.congress.presentation.ui.auth.LoginActivity
+import com.example.congress.presentation.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

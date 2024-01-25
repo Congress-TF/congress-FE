@@ -1,4 +1,4 @@
-package com.example.congress.presentation.base
+package com.example.congress.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes

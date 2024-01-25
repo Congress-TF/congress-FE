@@ -1,13 +1,12 @@
-package com.example.congress.presentation.ui.auth
+package com.example.congress.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.congress.R
+import com.example.congress.base.BaseActivity
 import com.example.congress.databinding.ActivityLoginBinding
-import com.example.congress.presentation.base.BaseActivity
-import com.example.congress.presentation.ui.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

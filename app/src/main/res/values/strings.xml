@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">congress</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="default_web_client_id">158798071956-6q9bug0bns6bghm96ov65h52s0rlg9bu.apps.googleusercontent.com</string>
-    <string name="long_sample_text">this is sample text,this is sample text,this is sample text,this is sample text</string>
     <string name="news_information">뉴스 정보 // 시간</string>
     <string name="query_hint">원하는 주제를 검색하세요</string>
     <string name="recommend_button_text_long">추천 검색어</string>
     <string name="recommend_button_text_short">단어</string>
+    <string name="long_sample_text">샘플입니다. 샘플입니다. 샘플입니다. 샘플입니다. 샘플입니다. 샘플입니다. 샘플입니다. 샘플입니다.</string>
     <string name="login_title">로그인</string>
     <string name="login_sign_with_google">구글 계정으로 로그인</string>
+
+    <!--버튼 -->
+    <string name="btn_next">다음</string>
 </resources>
