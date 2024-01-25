@@ -1,4 +1,7 @@
 package com.example.congress.domain.repository
 
-class LoginRepository {
+import com.example.congress.data.model.MemberSignInRequest
+
+interface LoginRepository {
+    suspend fun userLogin(memberSignInRequest: MemberSignInRequest)
 }
