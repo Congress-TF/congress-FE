@@ -62,7 +62,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun moveSignUpActivity() {
         run {
-            startActivity(Intent(this, SignUpActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
     }

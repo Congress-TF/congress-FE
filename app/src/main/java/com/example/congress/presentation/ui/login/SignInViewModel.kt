@@ -1,8 +1,9 @@
 package com.example.congress.presentation.ui.login
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.congress.base.BaseViewModel
 import com.example.congress.data.model.MemberSignInRequest
+import com.example.congress.domain.usecase.MemberSignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-) : ViewModel() {
+    private val memberSignInUseCase: MemberSignInUseCase
+) : BaseViewModel() {
 
     private val _loginUiState: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState.None)
     val loginUiState: StateFlow<LoginUiState>
@@ -23,6 +25,13 @@ class LoginViewModel @Inject constructor(
 
         viewModelScope.launch {
 
+        }
+    }
+
+    fun postMemberSignIn(memberSignInRequest: MemberSignInRequest) {
+        viewModelScope.launch {
+            // MemberSignInUseCase를 통해 서버에 회원가입 요청 전송
+            memberSignInUseCase.invoke(memberSignInRequest)
         }
     }
 }

@@ -1,7 +1,9 @@
 package com.example.congress.data.module
 
 import com.example.congress.data.network.ApiService
+import com.example.congress.data.repository.MemberSignInRepositoryImpl
 import com.example.congress.data.utils.AppInterceptor
+import com.example.congress.domain.repository.MemberSignInRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -18,19 +20,17 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ApiModule {
-    private val BASE_URL = "BASE_URL"
+    private val BASE_URL = "https://congresstf.link"
 
     @Singleton
     @Provides
-    fun provideInterceptor(): AppInterceptor{
+    fun provideInterceptor(): AppInterceptor {
         return AppInterceptor()
     }
 
     @Singleton
     @Provides
-    fun provideOkHttpBuilder(
-        interceptor: AppInterceptor
-    ): OkHttpClient {
+    fun provideOkHttpClient(interceptor: AppInterceptor): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -50,9 +50,9 @@ class ApiModule {
             .add(KotlinJsonAdapterFactory())
             .build()
 
-        return Retrofit.Builder().client(okHttpClient)
+        return Retrofit.Builder()
+            .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .client(provideOkHttpBuilder(provideInterceptor()))
             .baseUrl(BASE_URL)
             .build()
     }
@@ -61,5 +61,11 @@ class ApiModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMemberSignInRepository(apiService: ApiService): MemberSignInRepository {
+        return MemberSignInRepositoryImpl(apiService)
     }
 }

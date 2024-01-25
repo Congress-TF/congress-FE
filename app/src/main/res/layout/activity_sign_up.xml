@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.example.congress.presentation.ui.login.SignUpActivity" />
+            type="com.example.congress.presentation.ui.login.SignInActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.login.SignUpActivity">
+        tools:context=".presentation.ui.login.SignInActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -216,7 +216,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_disabled_btn"
-            android:enabled="false"
+            android:enabled="true"
             android:gravity="center"
             android:paddingVertical="10dp"
             android:text="@string/btn_next"

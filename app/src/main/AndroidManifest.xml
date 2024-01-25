@@ -22,7 +22,7 @@
 
         </activity>
         <activity
-            android:name=".presentation.ui.login.SignUpActivity"
+            android:name=".presentation.ui.login.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
