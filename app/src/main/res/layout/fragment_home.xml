@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.congress.presentation.ui.mypage.MyPageFragment" />
+            type="com.example.congress.presentation.ui.home.HomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="마이페이"
+            android:text="홈"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
