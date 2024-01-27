@@ -117,7 +117,7 @@
                         android:textSize="12sp" />
 
                     <EditText
-                        android:id="@+id/et_sex"
+                        android:id="@+id/et_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -215,7 +215,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_disabled_btn"
+            android:background="@drawable/bg_abled_btn"
             android:enabled="true"
             android:gravity="center"
             android:paddingVertical="10dp"

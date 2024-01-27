@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_fragment_home"
+        android:title="홈"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/nav_fragment_act"
+        android:title="법률"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/nav_fragment_revision"
+        android:title="개정 법률"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/nav_fragment_my_page"
+        android:title="마이페이지"
+        android:enabled="true"/>
+
+</menu>
