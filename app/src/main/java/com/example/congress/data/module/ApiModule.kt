@@ -2,8 +2,10 @@ package com.example.congress.data.module
 
 import com.example.congress.data.network.ApiService
 import com.example.congress.data.repository.MemberSignInRepositoryImpl
+import com.example.congress.data.repository.TestRepositoryImpl
 import com.example.congress.data.utils.AppInterceptor
 import com.example.congress.domain.repository.MemberSignInRepository
+import com.example.congress.domain.repository.TestRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -57,6 +59,7 @@ class ApiModule {
             .build()
     }
 
+
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
@@ -67,5 +70,11 @@ class ApiModule {
     @Provides
     fun provideMemberSignInRepository(apiService: ApiService): MemberSignInRepository {
         return MemberSignInRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun getTest(apiService: ApiService): TestRepository {
+        return TestRepositoryImpl(apiService)
     }
 }
