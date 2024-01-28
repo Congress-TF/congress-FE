@@ -1,9 +1,11 @@
 package com.example.congress.data.module
 
 import com.example.congress.data.network.ApiService
+import com.example.congress.data.repository.MemberCheckRepositoryImpl
 import com.example.congress.data.repository.MemberSignInRepositoryImpl
 import com.example.congress.data.repository.TestRepositoryImpl
 import com.example.congress.data.utils.AppInterceptor
+import com.example.congress.domain.repository.MemberCheckRepository
 import com.example.congress.domain.repository.MemberSignInRepository
 import com.example.congress.domain.repository.TestRepository
 import com.squareup.moshi.Moshi
@@ -76,5 +78,11 @@ class ApiModule {
     @Provides
     fun getTest(apiService: ApiService): TestRepository {
         return TestRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMemberCheckRepository(apiService: ApiService) : MemberCheckRepository {
+        return MemberCheckRepositoryImpl(apiService)
     }
 }

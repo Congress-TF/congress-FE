@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.databinding.ActivityLoginBinding
@@ -16,22 +17,27 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+    private val viewModel: LoginViewModel by viewModels()
+
     private val googleSignInClient: GoogleSignInClient by lazy { getGoogleClient() }
-    private val googleAuthLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+    private val googleAuthLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
 
-        try {
-            val account = task.getResult(ApiException::class.java)
-
-            val userName = account.givenName
-            Log.d("로그인", account.id.toString())
-
-            moveSignUpActivity()
-
-        } catch (e: ApiException) {
-
+            try {
+                val account = task.getResult(ApiException::class.java)
+                val userId = account?.id
+                if (!userId.isNullOrEmpty()) {
+                    val userIdInt = userId.toInt()
+                    Log.d("로그인", userIdInt.toString())
+                    viewModel.getMemberCheck(userIdInt)
+                    moveSignUpActivity()
+                } else {
+                }
+            } catch (e: ApiException) {
+            }
         }
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -50,7 +56,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         googleAuthLauncher.launch(signInIntent)
     }
 
-    private fun getGoogleClient() : GoogleSignInClient {
+    private fun getGoogleClient(): GoogleSignInClient {
         val googleSignInOption = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestScopes(Scope("https://www.googleapis.com/auth/pubsub"))
             .requestServerAuthCode(getString(R.string.default_web_client_id))
