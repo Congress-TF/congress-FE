@@ -10,8 +10,8 @@
     <color name="gray_7">#909090</color>
     <color name="gray_8">#E1E1E1</color>
     <color name="gray_9">#9E9E9E</color>
-    <color name="main_brown">#685145</color>
-    <color name="sub_brown">#AC9090</color>
+    <color name="main_blue">#0003C3</color>
+    <color name="sub_blue">#B9DEF1</color>
     <color name="sub_bage">#FFE6DE</color>
     <color name="black">#000000</color>
 </resources>

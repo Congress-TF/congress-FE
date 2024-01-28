@@ -8,4 +8,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RevisionFragment : BaseFragment<FragmentRevisionBinding>(R.layout.fragment_revision) {
 
+    override fun createView(binding: FragmentRevisionBinding) {
+
+    }
+
+    override fun viewCreated() {
+
+    }
 }

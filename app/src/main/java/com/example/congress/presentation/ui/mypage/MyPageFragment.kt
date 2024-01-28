@@ -8,4 +8,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
+    override fun createView(binding: FragmentMyPageBinding) {
+
+    }
+
+    override fun viewCreated() {
+
+    }
 }

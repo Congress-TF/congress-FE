@@ -7,5 +7,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ActFragment : BaseFragment<FragmentActBinding>(R.layout.fragment_act) {
+    override fun createView(binding: FragmentActBinding) {
+
+    }
+
+    override fun viewCreated() {
+
+    }
 
 }
