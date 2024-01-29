@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.congress.data.model.ActModel
+import com.example.congress.data.model.LikeActModel
 import com.example.congress.databinding.ItemActBinding
 
-class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
+class LikeActAdapter : RecyclerView.Adapter<LikeActAdapter.ViewHolder>() {
     private lateinit var itemClickListener: OnItemClickListener
-    private var actList = listOf<ActModel>()
+    private var likeActList = listOf<LikeActModel>()
 
     inner class ViewHolder(val binding: ItemActBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ActModel) {
+        fun bind(item: LikeActModel) {
             binding.apply {
                 tvNewsTitle.text = item.title
                 tvNewsPerson.text = item.person
@@ -28,15 +29,15 @@ class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(actList[position])
+        holder.bind(likeActList[position])
     }
 
     override fun getItemCount(): Int {
-        return actList.size
+        return likeActList.size
     }
 
-    fun setActList(list: List<ActModel>) {
-        actList = list
+    fun setActList(list: List<LikeActModel>) {
+        likeActList = list
         notifyDataSetChanged()
     }
 }
