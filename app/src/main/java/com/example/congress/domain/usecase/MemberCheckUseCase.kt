@@ -1,5 +1,6 @@
 package com.example.congress.domain.usecase
 
+import com.example.congress.data.model.MemberCheckResponse
 import com.example.congress.domain.repository.MemberCheckRepository
 import javax.inject.Inject
 
@@ -8,7 +9,7 @@ class MemberCheckUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         userId: String,
-    ) {
-        memberCheckRepository.memberCheck(userId = userId)
+    ): MemberCheckResponse {
+        return memberCheckRepository.memberCheck(userId = userId)
     }
 }

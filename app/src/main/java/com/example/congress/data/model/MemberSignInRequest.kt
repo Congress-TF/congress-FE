@@ -10,8 +10,6 @@ data class MemberSignInRequest(
     val gender: String = "",
     @field:Json(name = "year")
     val year: String = "",
-    @field:Json(name = "email")
-    val email: String = "",
-    @field:Json(name = "intend")
-    val intend: String = "",
+    @field:Json(name = "userId")
+    val userId: String = "",
 )

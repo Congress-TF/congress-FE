@@ -2,11 +2,13 @@ package com.example.congress.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.databinding.ActivityLoginBinding
+import com.example.congress.presentation.ui.home.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -19,16 +21,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     private val viewModel: LoginViewModel by viewModels()
 
     private val googleSignInClient: GoogleSignInClient by lazy { getGoogleClient() }
+    private var userId: String = ""
     private val googleAuthLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
 
             try {
                 val account = task.getResult(ApiException::class.java)
-                val userId = account?.id
+                userId = account?.id.toString()
                 if (!userId.isNullOrEmpty()) {
                     viewModel.getMemberCheck(userId)
-                    moveSignUpActivity()
                 } else {
                 }
             } catch (e: ApiException) {
@@ -44,6 +46,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         super.initView()
         binding.ivSignWithGoogle.setOnClickListener {
             loginGoogle()
+        }
+
+        viewModel.isMember.observe(
+            this,
+        ) { isMember ->
+            if (!isMember) {
+                moveHomeActivity()
+            } else {
+                moveSignInActivity(userId = userId)
+            }
         }
     }
 
@@ -63,10 +75,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         return GoogleSignIn.getClient(this, googleSignInOption)
     }
 
-    private fun moveSignUpActivity() {
+    private fun moveHomeActivity() {
         run {
-            startActivity(Intent(this, SignInActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
+    }
+
+    private fun moveSignInActivity(userId: String) {
+        val intent = Intent(this, SignInActivity::class.java).apply {
+            putExtra("USER_ID", userId)
+        }
+        startActivity(intent)
+        finish()
     }
 }

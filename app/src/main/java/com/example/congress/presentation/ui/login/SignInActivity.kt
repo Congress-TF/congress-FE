@@ -1,14 +1,17 @@
 package com.example.congress.presentation.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.MemberSignInRequest
 import com.example.congress.databinding.ActivitySignUpBinding
+import com.example.congress.presentation.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,12 +20,13 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+
     }
 
     override fun initView() {
         super.initView()
+        val userId = intent.getStringExtra("USER_ID")
 
         binding.root.setOnClickListener {
             hideKeyboard()
@@ -37,9 +41,10 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             val gender = viewModel.gender.value.toString()
             val age = viewModel.age.value.toString()
 
-            val memberSignInRequest = MemberSignInRequest(nickname, gender, age)
+            val memberSignInRequest = MemberSignInRequest(nickname, gender, age, userId.toString())
 
             viewModel.postMemberSignIn(memberSignInRequest)
+            moveHomeActivity()
         }
 
         viewModel.nickname.observe(this) {
@@ -120,6 +125,11 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
     }
 
-
+    private fun moveHomeActivity() {
+        run {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+    }
 
 }
