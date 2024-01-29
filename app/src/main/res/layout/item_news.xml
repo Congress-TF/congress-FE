@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -19,6 +20,7 @@
             android:id="@+id/tv_news_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="의안명"
             android:textColor="@android:color/black"
             android:textSize="16sp"
@@ -26,15 +28,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toTopOf="@+id/tv_news_session"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_news_title" />
+
         <TextView
             android:id="@+id/tv_news_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:text="제안자"
             android:textColor="@color/gray_4"
             android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/tv_news_title" />
 
 
@@ -48,6 +61,32 @@
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_news_person" />
+
+
+        <ImageView
+            android:id="@+id/iv_heart"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_heart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_news_session" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="17"
+            android:textColor="@color/gray_4"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_heart"
+            app:layout_constraintTop_toBottomOf="@+id/tv_news_session" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,6 +114,7 @@
             android:background="@drawable/bg_abled_btn_sub"
             android:gravity="center"
             android:text="자세히 보기"
+            android:textColor="@color/gray_9"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,16 +124,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/gray_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

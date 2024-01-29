@@ -32,6 +32,7 @@
             android:background="@drawable/ic_nav_background"
             app:itemActiveIndicatorStyle="@android:color/transparent"
             app:itemBackground="@android:color/transparent"
+            app:itemIconSize="36dp"
             app:itemIconTint="@color/bottom_nav_home_selector"
             app:itemRippleColor="@android:color/transparent"
             app:itemTextColor="@color/bottom_nav_home_selector"
