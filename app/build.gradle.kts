@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:+")
     val lifecycle_version = "2.5.1"
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -67,13 +68,16 @@ dependencies {
 
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
-
+    implementation("com.jakewharton.timber:timber:5.0.1")
 }
 
 kapt {
