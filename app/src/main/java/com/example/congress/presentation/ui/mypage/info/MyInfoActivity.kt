@@ -12,6 +12,7 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
+        moveToBack()
     }
 
     override fun initView() {
@@ -20,7 +21,11 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
         setupYearPicker()
     }
 
-
+    private fun moveToBack() {
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+    }
     private fun selectRadioButton() {
         val radioGroup = binding.radioGroup
 
