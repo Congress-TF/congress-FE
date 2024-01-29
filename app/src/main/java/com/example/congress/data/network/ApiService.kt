@@ -2,7 +2,6 @@ package com.example.congress.data.network
 
 import com.example.congress.data.model.MemberCheckResponse
 import com.example.congress.data.model.MemberSignInRequest
-import com.example.congress.data.model.TestResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,11 +14,8 @@ interface ApiService {
         @Body initMemberModel: MemberSignInRequest
     )
 
-    @GET("/v1/test")
-    suspend fun getTest(): TestResponse
-
     @GET("/v1/member/check")
     suspend fun getMemberCheck(
-        @Query("userId") userId: Int
+        @Query("userId") userId: String
     ): MemberCheckResponse
 }

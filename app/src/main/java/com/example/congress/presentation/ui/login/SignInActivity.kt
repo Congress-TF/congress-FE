@@ -5,80 +5,121 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.MemberSignInRequest
 import com.example.congress.databinding.ActivitySignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
 
 @AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-
     private val viewModel: SignInViewModel by viewModels()
 
-    private var nickFlag = false
-    private var genderFlag = false
-    private var birthFlag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
     }
 
     override fun initView() {
         super.initView()
 
-        binding.root.setOnClickListener{
+        binding.root.setOnClickListener {
             hideKeyboard()
         }
 
         nickTextWatcher()
-
-        viewModel.test()
+        genderTextWatcher()
+        ageTextWatcher()
 
         binding.tvComplete.setOnClickListener {
-            val nickname = binding.tvNickname.text.toString()
-            val gender = binding.etGender.text.toString()
-            val age = binding.etAge.text.toString()
-            val email = binding.etEmail.text.toString()
+            val nickname = viewModel.nickname.value.toString()
+            val gender = viewModel.gender.value.toString()
+            val age = viewModel.age.value.toString()
 
-            val memberSignInRequest = MemberSignInRequest(nickname, gender, age, email)
+            val memberSignInRequest = MemberSignInRequest(nickname, gender, age)
 
             viewModel.postMemberSignIn(memberSignInRequest)
         }
+
+        viewModel.nickname.observe(this) {
+            updateCompleteButtonState()
+        }
+
+        viewModel.gender.observe(this) {
+            updateCompleteButtonState()
+        }
+
+        viewModel.age.observe(this) {
+            updateCompleteButtonState()
+        }
+
     }
 
 
-    private fun hideKeyboard(){
+    private fun hideKeyboard() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         currentFocus?.clearFocus()
     }
 
 
-    private fun nickTextWatcher(){
+    private fun nickTextWatcher() {
         val nickname = binding.tvNickname
         binding.tvNickname.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
+                // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
+                viewModel.setNickname(p0.toString())
             }
         })
     }
 
-    private fun isComplete(){
-        if(nickFlag && genderFlag && birthFlag){
-            with(binding.tvComplete){
+    private fun genderTextWatcher() {
+        val gender = binding.etGender
+        binding.etGender.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
+                viewModel.setGender(p0.toString())
+            }
+        })
+    }
+
+    private fun ageTextWatcher() {
+        val age = binding.etAge
+        binding.etAge.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
+                viewModel.setAge(p0.toString())
+            }
+        })
+    }
+
+
+    private fun updateCompleteButtonState() {
+        val nickFlag = viewModel.nickname.value
+        val genderFlag = viewModel.gender.value
+        val ageFlag = viewModel.age.value
+
+        // null 체크와 값이 비어 있는지 확인
+        if (!nickFlag.isNullOrEmpty() && !genderFlag.isNullOrEmpty() && !ageFlag.isNullOrEmpty()) {
+            with(binding.tvComplete) {
                 setBackgroundResource(R.drawable.bg_abled_btn)
                 isEnabled = true
             }
-        }else{
-            with(binding.tvComplete){
+        } else {
+            with(binding.tvComplete) {
                 setBackgroundResource(R.drawable.bg_disabled_btn)
                 isEnabled = false
             }
         }
     }
+
+
+
 }

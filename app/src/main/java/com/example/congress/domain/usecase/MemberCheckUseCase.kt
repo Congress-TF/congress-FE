@@ -7,7 +7,7 @@ class MemberCheckUseCase @Inject constructor(
     private val memberCheckRepository: MemberCheckRepository,
 ) {
     suspend operator fun invoke(
-        userId: Int,
+        userId: String,
     ) {
         memberCheckRepository.memberCheck(userId = userId)
     }

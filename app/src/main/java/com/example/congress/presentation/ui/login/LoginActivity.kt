@@ -2,7 +2,6 @@ package com.example.congress.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.congress.R
@@ -28,9 +27,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 val account = task.getResult(ApiException::class.java)
                 val userId = account?.id
                 if (!userId.isNullOrEmpty()) {
-                    val userIdInt = userId.toInt()
-                    Log.d("로그인", userIdInt.toString())
-                    viewModel.getMemberCheck(userIdInt)
+                    viewModel.getMemberCheck(userId)
                     moveSignUpActivity()
                 } else {
                 }

@@ -13,7 +13,7 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel() {
 
 
-    fun getMemberCheck(userId: Int) {
+    fun getMemberCheck(userId: String) {
         viewModelScope.launch {
             memberCheckUseCase.invoke(userId = userId)
         }
