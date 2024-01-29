@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.congress.presentation.ui.revision.RevisionFragment" />
+            type="com.example.congress.presentation.ui.like.LikeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="개정 법률"
+            android:text="관심"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

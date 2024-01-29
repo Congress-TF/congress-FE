@@ -51,7 +51,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         viewModel.isMember.observe(
             this,
         ) { isMember ->
-            if (!isMember) {
+            if (isMember) {
                 moveHomeActivity()
             } else {
                 moveSignInActivity(userId = userId)

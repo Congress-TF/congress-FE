@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.databinding.ActivityHomeBinding
-import com.example.congress.presentation.ui.act.ActFragment
+import com.example.congress.presentation.ui.like.LikeFragment
 import com.example.congress.presentation.ui.mypage.MyPageFragment
-import com.example.congress.presentation.ui.revision.RevisionFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,6 +24,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
         initFragment()
         initBottomNavigation()
+
+        binding.btmNavViewHome.selectedItemId = R.id.nav_fragment_home
     }
 
     // 바텀 네비게이션으로 프래그먼트 간 화면 전환
@@ -36,10 +37,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                     HomeFragment().changeFragment()
                 }
                 R.id.nav_fragment_act -> {
-                    ActFragment().changeFragment()
-                }
-                R.id.nav_fragment_revision -> {
-                    RevisionFragment().changeFragment()
+                    LikeFragment().changeFragment()
                 }
                 R.id.nav_fragment_my_page -> {
                     MyPageFragment().changeFragment()
@@ -60,6 +58,4 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             .add(R.id.fv_home, HomeFragment())
         transaction.commit()
     }
-
-
 }
