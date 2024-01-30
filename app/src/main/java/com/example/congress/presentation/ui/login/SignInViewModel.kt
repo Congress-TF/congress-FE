@@ -23,17 +23,14 @@ class SignInViewModel @Inject constructor(
     private val _age = MutableLiveData<String>()
     val age: LiveData<String> = _age
 
-    // 닉네임 설정 메서드
     fun setNickname(nickname: String) {
         _nickname.value = nickname
     }
 
-    // 성별 설정 메서드
     fun setGender(gender: String) {
         _gender.value = gender
     }
 
-    // 나이 설정 메서드
     fun setAge(age: String) {
         _age.value = age
     }

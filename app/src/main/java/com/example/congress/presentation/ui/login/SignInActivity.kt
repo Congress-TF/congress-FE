@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
@@ -34,8 +33,7 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
 
         nickTextWatcher()
-        genderTextWatcher()
-        ageTextWatcher()
+        setupYearPicker()
 
         binding.tvComplete.setOnClickListener {
             val nickname = viewModel.nickname.value.toString()
@@ -71,36 +69,12 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
 
     private fun nickTextWatcher() {
-        val nickname = binding.tvNickname
         binding.tvNickname.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
                 // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
                 viewModel.setNickname(p0.toString())
-            }
-        })
-    }
-
-    private fun genderTextWatcher() {
-        val gender = binding.etGender.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(p0: Editable?) {
-                // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
-                viewModel.setGender(p0.toString())
-            }
-        })
-    }
-
-    private fun ageTextWatcher() {
-        val age = binding.etAge
-        binding.etAge.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(p0: Editable?) {
-                // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
-                viewModel.setAge(p0.toString())
             }
         })
     }
@@ -138,15 +112,26 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.radio_man -> {
-                    // 남자 라디오 버튼이 선택된 경우 처리
-                    Toast.makeText(this, "남자", Toast.LENGTH_SHORT).show()
+                    viewModel.setGender("남자")
                 }
                 R.id.radio_woman -> {
-                    // 여자 라디오 버튼이 선택된 경우 처리
-                    Toast.makeText(this, "여자", Toast.LENGTH_SHORT).show()
+                    viewModel.setGender("여자")
                 }
             }
         }
     }
 
+
+    private fun setupYearPicker() {
+        val yearPicker = binding.yearpickerDatepicker
+        val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+
+        yearPicker.minValue = 1900
+        yearPicker.maxValue = currentYear
+        yearPicker.value = currentYear
+
+        yearPicker.setOnValueChangedListener { picker, oldVal, newVal ->
+            viewModel.setAge(newVal.toString())
+        }
+    }
 }
