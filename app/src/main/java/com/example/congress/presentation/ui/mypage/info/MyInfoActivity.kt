@@ -2,6 +2,7 @@ package com.example.congress.presentation.ui.mypage.info
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.MemberMyInfoResponse
@@ -27,6 +28,24 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
     override fun initView() {
         super.initView()
         setupYearPicker()
+
+        binding.tvNickname.addTextChangedListener {
+            viewModel.setNickname(it.toString())
+        }
+
+        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            val gender = when (checkedId) {
+                R.id.radio_man -> "남자"
+                R.id.radio_woman -> "여자"
+                else -> null
+            }
+            viewModel.setGender(gender.toString())
+        }
+
+        binding.yearPicker.setOnValueChangedListener { picker, oldVal, newVal ->
+            viewModel.setAge(newVal.toString())
+        }
+
 
         binding.tvComplete.setOnClickListener {
             val nickname = viewModel.nickname.toString()
@@ -73,8 +92,5 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
         yearPicker.minValue = 1900
         yearPicker.maxValue = currentYear
         yearPicker.value = currentYear
-
     }
-
-
 }

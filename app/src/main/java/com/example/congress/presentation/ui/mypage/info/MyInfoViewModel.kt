@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MyInfoViewModel @Inject constructor(
     private val memberMyInfoUseCase: MemberMyInfoUseCase,
-    private val memberUpdateUseCase: MemberUpdateUseCase
+    private val memberUpdateUseCase: MemberUpdateUseCase,
 ) : BaseViewModel() {
 
     private val _memberMyInfo = MutableLiveData<MemberMyInfoResponse>()
@@ -30,18 +30,47 @@ class MyInfoViewModel @Inject constructor(
     private val _age = MutableLiveData<String>()
     val age: LiveData<String> = _age
 
+    private var originalAge: String? = null
+
+    private fun setOriginalAge(age: String?) {
+        originalAge = age
+    }
+
+    fun setNickname(nickname: String) {
+        _nickname.value = nickname
+    }
+
+    fun setGender(gender: String) {
+        _gender.value = gender
+    }
+
+    fun setAge(age: String) {
+        _age.value = age
+    }
+
 
     fun getMemberMyInfo(userId: String) {
         viewModelScope.launch {
             val myInfo = memberMyInfoUseCase(userId)
             _memberMyInfo.value = myInfo
+
+            setOriginalAge(
+                myInfo.payload?.year
+            )
         }
     }
 
     fun putMemberUpdate(memberUpdateRequest: MemberSignInRequest) {
-        viewModelScope.launch {
-            memberUpdateUseCase.invoke(memberUpdateRequest)
+        val currentAge = _age.value
 
+        val finalRequest = MemberSignInRequest(
+            _nickname.value.toString(),
+            _gender.value.toString(),
+            currentAge ?: originalAge.toString(),
+            memberUpdateRequest.userId
+        )
+        viewModelScope.launch {
+            memberUpdateUseCase.invoke(finalRequest)
         }
     }
 }
