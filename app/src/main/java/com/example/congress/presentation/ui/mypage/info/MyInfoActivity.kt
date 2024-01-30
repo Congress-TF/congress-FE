@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.MemberMyInfoResponse
+import com.example.congress.data.model.MemberSignInRequest
 import com.example.congress.databinding.ActivityMyInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +27,16 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
     override fun initView() {
         super.initView()
         setupYearPicker()
+
+        binding.tvComplete.setOnClickListener {
+            val nickname = viewModel.nickname.toString()
+            val gender = viewModel.gender.value.toString()
+            val age = viewModel.age.value.toString()
+
+            val memberUpdateRequest = MemberSignInRequest(nickname, gender, age, userId.toString())
+
+            viewModel.putMemberUpdate(memberUpdateRequest)
+        }
     }
 
 

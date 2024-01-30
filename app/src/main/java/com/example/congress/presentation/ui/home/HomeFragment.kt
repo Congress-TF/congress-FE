@@ -38,7 +38,7 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
     )
 
     override fun createView(binding: FragmentHomeBinding) {
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
     }
 
     override fun viewCreated() {
