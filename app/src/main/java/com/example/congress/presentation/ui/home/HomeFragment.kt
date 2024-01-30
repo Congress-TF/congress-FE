@@ -10,11 +10,13 @@ import com.example.congress.data.model.ActModel
 import com.example.congress.databinding.FragmentHomeBinding
 import com.example.congress.presentation.adapter.ActAdapter
 import com.example.congress.presentation.adapter.CategoryAdapter
+import com.example.congress.presentation.adapter.CategoryDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var categoryDetailAdapter: CategoryDetailAdapter
     private lateinit var actAdapter: ActAdapter
     private lateinit var viewModel: HomeViewModel
     private var pageInit: Int = 0
@@ -60,11 +62,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         categoryAdapter = CategoryAdapter { selectedCategory ->
             viewModel.setSelectedCategory(selectedCategory)
         }
+        categoryDetailAdapter = CategoryDetailAdapter()
         actAdapter = ActAdapter()
 
         binding.rvActCategory.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvActCategory.adapter = categoryAdapter
+        binding.rvActCategoryDetail.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvActCategoryDetail.adapter = categoryDetailAdapter
         binding.rvHome.adapter = actAdapter
 
         actAdapter.setActList(actList)

@@ -10,12 +10,13 @@ import com.example.congress.data.model.ActModel
 import com.example.congress.databinding.FragmentLikeBinding
 import com.example.congress.presentation.adapter.ActAdapter
 import com.example.congress.presentation.adapter.CategoryAdapter
-import com.example.congress.presentation.ui.home.HomeViewModel
+import com.example.congress.presentation.adapter.CategoryDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LikeFragment : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var categoryDetailAdapter: CategoryDetailAdapter
     private lateinit var adapter: ActAdapter
     private lateinit var viewModel: LikeViewModel
     private var pageInit: Int = 0
@@ -51,11 +52,15 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
         categoryAdapter = CategoryAdapter { selectedCategory ->
             viewModel.setSelectedCategory(selectedCategory)
         }
+        categoryDetailAdapter = CategoryDetailAdapter()
         adapter = ActAdapter()
 
         binding.rvActCategory.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvActCategory.adapter = categoryAdapter
+        binding.rvActCategoryDetail.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvActCategoryDetail.adapter = categoryDetailAdapter
         binding.rvHome.adapter = adapter
 
         adapter.setActList(likeActList)
