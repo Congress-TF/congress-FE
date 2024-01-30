@@ -41,7 +41,7 @@ class CategoryAdapter(private val onCategorySelected: (String) -> Unit) : Recycl
         fun updateButtonStyles() {
             if (isSelected) {
                 actCategory.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
-                actCategory.setBackgroundResource(R.drawable.bg_abled_btn)
+                actCategory.setBackgroundResource(R.drawable.bg_abled_category)
             } else {
                 actCategory.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_7))
                 actCategory.setBackgroundResource(R.drawable.bg_disabled_btn)

@@ -6,10 +6,10 @@ data class MemberMyInfoResponse(
     @field:Json(name = "result")
     val result: ApiResponse?,
     @field:Json(name = "payload")
-    val payload: Payload?
+    val payload: MemberMyInfoPayload?
 )
 
-data class Payload(
+data class MemberMyInfoPayload(
     @field:Json(name = "nickname")
     val nickname: String?,
     @field:Json(name = "gender")
