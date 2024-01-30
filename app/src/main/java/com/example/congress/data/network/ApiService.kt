@@ -1,6 +1,7 @@
 package com.example.congress.data.network
 
 import com.example.congress.data.model.MemberCheckResponse
+import com.example.congress.data.model.MemberMyInfoResponse
 import com.example.congress.data.model.MemberSignInRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,4 +19,9 @@ interface ApiService {
     suspend fun getMemberCheck(
         @Query("userId") userId: String
     ): MemberCheckResponse
+
+    @GET("/v1/member/myinfo")
+    suspend fun getMemberMyInfo(
+        @Query("userId") userId: String
+    ): MemberMyInfoResponse
 }

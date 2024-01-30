@@ -2,6 +2,7 @@ package com.example.congress.presentation.ui.mypage.info
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.databinding.ActivityMyInfoBinding
@@ -9,6 +10,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_info) {
+    private val viewModel: MyInfoViewModel by viewModels()
+    private var userId : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -19,6 +23,8 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
         super.initView()
         selectRadioButton()
         setupYearPicker()
+        userId = intent.getStringExtra("USER_ID")
+        viewModel.getMemberMyInfo(userId = userId.toString())
     }
 
     private fun moveToBack() {

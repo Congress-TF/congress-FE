@@ -43,7 +43,12 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             val memberSignInRequest = MemberSignInRequest(nickname, gender, age, userId.toString())
 
             viewModel.postMemberSignIn(memberSignInRequest)
-            moveHomeActivity()
+
+            val intent = Intent(this, HomeActivity::class.java).apply {
+                putExtra("USER_ID", userId)
+            }
+            startActivity(intent)
+            finish()
         }
 
         viewModel.nickname.observe(this) {
@@ -99,12 +104,6 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
     }
 
-    private fun moveHomeActivity() {
-        run {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
-    }
 
     private fun selectRadioButton() {
         val radioGroup = binding.radioGroup
@@ -114,6 +113,7 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 R.id.radio_man -> {
                     viewModel.setGender("남자")
                 }
+
                 R.id.radio_woman -> {
                     viewModel.setGender("여자")
                 }

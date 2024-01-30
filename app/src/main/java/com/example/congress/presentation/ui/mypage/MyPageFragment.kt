@@ -9,24 +9,27 @@ import com.example.congress.presentation.ui.mypage.myAct.MyActActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
+class MyPageFragment(private var userId: String) : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
     override fun createView(binding: FragmentMyPageBinding) {
+
+    }
+
+    override fun viewCreated() {
         binding.tvMyInfo.setOnClickListener {
-            moveToMyInfo()
+            moveToMyInfo(userId = userId)
         }
         binding.tvMyAct.setOnClickListener {
             moveToMyAct()
         }
     }
 
-    override fun viewCreated() {
-    }
 
-
-    private fun moveToMyInfo() {
+    private fun moveToMyInfo(userId: String) {
         activity?.let {
-            val intent = Intent(it, MyInfoActivity::class.java)
+            val intent = Intent(it, MyInfoActivity::class.java).apply {
+                putExtra("USER_ID", userId)
+            }
             it.startActivity(intent)
         }
     }

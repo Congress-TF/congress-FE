@@ -14,7 +14,7 @@ import com.example.congress.presentation.adapter.CategoryDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryDetailAdapter: CategoryDetailAdapter
     private lateinit var actAdapter: ActAdapter

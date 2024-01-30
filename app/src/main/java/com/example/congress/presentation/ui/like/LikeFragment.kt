@@ -14,7 +14,7 @@ import com.example.congress.presentation.adapter.CategoryDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LikeFragment : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
+class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryDetailAdapter: CategoryDetailAdapter
     private lateinit var adapter: ActAdapter
@@ -47,7 +47,7 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
         observeSelectedCategory()
     }
 
-    private fun setAdapter(){
+    private fun setAdapter() {
 
         categoryAdapter = CategoryAdapter { selectedCategory ->
             viewModel.setSelectedCategory(selectedCategory)
