@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
@@ -21,7 +21,8 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        initView()
+        selectRadioButton()
     }
 
     override fun initView() {
@@ -82,8 +83,7 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     }
 
     private fun genderTextWatcher() {
-        val gender = binding.etGender
-        binding.etGender.addTextChangedListener(object : TextWatcher {
+        val gender = binding.etGender.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
@@ -129,6 +129,23 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         run {
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
+        }
+    }
+
+    private fun selectRadioButton() {
+        val radioGroup = binding.radioGroup
+
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.radio_man -> {
+                    // 남자 라디오 버튼이 선택된 경우 처리
+                    Toast.makeText(this, "남자", Toast.LENGTH_SHORT).show()
+                }
+                R.id.radio_woman -> {
+                    // 여자 라디오 버튼이 선택된 경우 처리
+                    Toast.makeText(this, "여자", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

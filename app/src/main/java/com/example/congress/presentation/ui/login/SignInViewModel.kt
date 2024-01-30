@@ -45,9 +45,3 @@ class SignInViewModel @Inject constructor(
         }
     }
 }
-
-sealed interface LoginUiState {
-    object None: LoginUiState
-    object Loding: LoginUiState
-    data class Success(val initMemberModel: MemberSignInRequest )
-}

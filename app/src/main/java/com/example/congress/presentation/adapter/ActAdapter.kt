@@ -1,17 +1,20 @@
 package com.example.congress.presentation.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.congress.data.model.ActModel
-import com.example.congress.databinding.ItemNewsBinding
+import com.example.congress.databinding.ItemActBinding
+import com.example.congress.presentation.ui.act.ActActivity
 
 class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
     private lateinit var itemClickListener: OnItemClickListener
     private var actList = listOf<ActModel>()
 
-    inner class ViewHolder(val binding: ItemNewsBinding) :
+    inner class ViewHolder(val binding: ItemActBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ActModel) {
             binding.apply {
@@ -20,10 +23,18 @@ class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
                 tvNewsSession.text = item.session
             }
         }
+
+        init {
+            binding.tvDetail.setOnClickListener { view ->
+                val context = view.context
+                val intent = Intent(context, ActActivity::class.java)
+                ContextCompat.startActivity(context, intent, null)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemActBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
