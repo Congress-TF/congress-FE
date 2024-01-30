@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.congress.R
 import com.example.congress.databinding.ItemCategoryBinding
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(private val onCategorySelected: (String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var selectedPosition = 0
     private var actList = listOf("법률", "개정 법률")
 
@@ -34,7 +34,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
                     selectedPosition = clickedPosition
                 }
                 updateButtonStyles()
-                onButtonSelected(actCategory)
+                onCategorySelected(actCategory)
             }
         }
 
@@ -62,9 +62,5 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return actList.size
-    }
-
-    private fun onButtonSelected(button: String) {
-
     }
 }
