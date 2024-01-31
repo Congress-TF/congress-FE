@@ -2,10 +2,16 @@ package com.example.congress.data.module
 
 import com.example.congress.data.network.ApiService
 import com.example.congress.data.repository.MemberCheckRepositoryImpl
+import com.example.congress.data.repository.MemberMyInfoRepositoryImpl
 import com.example.congress.data.repository.MemberSignInRepositoryImpl
+import com.example.congress.data.repository.MemberSignOutRepositoryImpl
+import com.example.congress.data.repository.MemberUpdateRepositoryImpl
 import com.example.congress.data.utils.AppInterceptor
 import com.example.congress.domain.repository.MemberCheckRepository
+import com.example.congress.domain.repository.MemberMyInfoRepository
 import com.example.congress.domain.repository.MemberSignInRepository
+import com.example.congress.domain.repository.MemberSignOutRepository
+import com.example.congress.domain.repository.MemberUpdateRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -74,7 +80,25 @@ class ApiModule {
 
     @Singleton
     @Provides
+    fun provideMemberSignOutRepository(apiService: ApiService): MemberSignOutRepository {
+        return MemberSignOutRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
     fun provideMemberCheckRepository(apiService: ApiService) : MemberCheckRepository {
         return MemberCheckRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMemberMyInfoRepository(apiService: ApiService) : MemberMyInfoRepository {
+        return MemberMyInfoRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMemberUpdateRepository(apiService: ApiService) : MemberUpdateRepository {
+        return MemberUpdateRepositoryImpl(apiService)
     }
 }

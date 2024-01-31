@@ -9,7 +9,7 @@ import com.example.congress.databinding.ItemCategoryBinding
 
 class CategoryAdapter(private val onCategorySelected: (String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var selectedPosition = 0
-    private var actList = listOf("법률", "개정 법률")
+    private var actList = listOf("정족수 충족", "정족수 미충족")
 
     inner class ViewHolder(val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,7 +41,7 @@ class CategoryAdapter(private val onCategorySelected: (String) -> Unit) : Recycl
         fun updateButtonStyles() {
             if (isSelected) {
                 actCategory.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
-                actCategory.setBackgroundResource(R.drawable.bg_abled_btn)
+                actCategory.setBackgroundResource(R.drawable.bg_abled_category)
             } else {
                 actCategory.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_7))
                 actCategory.setBackgroundResource(R.drawable.bg_disabled_btn)

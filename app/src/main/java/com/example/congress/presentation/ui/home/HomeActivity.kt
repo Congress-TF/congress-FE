@@ -21,26 +21,31 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     override fun initView() {
         super.initView()
+        val userId = intent.getStringExtra("USER_ID")
 
-        initFragment()
-        initBottomNavigation()
+        if (userId != null) {
+            initFragment(userId)
+        }
+        if (userId != null) {
+            initBottomNavigation(userId)
+        }
 
         binding.btmNavViewHome.selectedItemId = R.id.nav_fragment_home
     }
 
     // 바텀 네비게이션으로 프래그먼트 간 화면 전환
-    private fun initBottomNavigation() {
+    private fun initBottomNavigation(userId: String) {
 
         binding.btmNavViewHome.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.nav_fragment_home -> {
-                    HomeFragment().changeFragment()
+                    HomeFragment(userId).changeFragment()
                 }
                 R.id.nav_fragment_act -> {
-                    LikeFragment().changeFragment()
+                    LikeFragment(userId).changeFragment()
                 }
                 R.id.nav_fragment_my_page -> {
-                    MyPageFragment().changeFragment()
+                    MyPageFragment(userId).changeFragment()
                 }
             }
             return@setOnItemSelectedListener true
@@ -53,9 +58,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     // 초기 프래그먼트 선언
-    private fun initFragment() {
+    private fun initFragment(userId: String) {
         val transaction = manager.beginTransaction()
-            .add(R.id.fv_home, HomeFragment())
+            .add(R.id.fv_home, HomeFragment(userId))
         transaction.commit()
     }
 }

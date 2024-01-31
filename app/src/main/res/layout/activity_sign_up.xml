@@ -131,16 +131,6 @@
                             android:text="여자"/>
                     </RadioGroup>
 
-
-                    <EditText
-                        android:id="@+id/et_gender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="성별을 입력해주세요."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
                 </LinearLayout>
 
                 <View
@@ -175,15 +165,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
 
-
-                    <EditText
-                        android:id="@+id/et_age"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="연령을 입력해주세요."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
 
                 </LinearLayout>
 

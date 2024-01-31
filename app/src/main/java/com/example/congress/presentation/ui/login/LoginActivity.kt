@@ -2,7 +2,6 @@ package com.example.congress.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.congress.R
@@ -52,7 +51,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             this,
         ) { isMember ->
             if (isMember) {
-                moveHomeActivity()
+                moveHomeActivity(userId = userId)
             } else {
                 moveSignInActivity(userId = userId)
             }
@@ -75,11 +74,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         return GoogleSignIn.getClient(this, googleSignInOption)
     }
 
-    private fun moveHomeActivity() {
-        run {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
+    private fun moveHomeActivity(userId: String) {
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            putExtra("USER_ID", userId)
         }
+        startActivity(intent)
+        finish()
     }
 
     private fun moveSignInActivity(userId: String) {

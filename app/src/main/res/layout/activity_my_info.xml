@@ -95,6 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:text=""
                         android:hint="닉네임을 입력해주세요."
                         android:textColor="@color/black"
                         android:textSize="18sp" />
@@ -179,16 +180,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
 
-                    <!--                    <EditText-->
-                    <!--                        android:id="@+id/et_age"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:background="@null"-->
-                    <!--                        android:hint="연령을 입력해주세요."-->
-                    <!--                        android:textColor="@color/black"-->
-                    <!--                        android:textSize="18sp" />-->
-
-                </LinearLayout>
+                       </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -200,6 +192,25 @@
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_abled_btn"
+            android:enabled="true"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="수정"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

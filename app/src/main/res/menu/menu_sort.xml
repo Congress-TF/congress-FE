@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_sort_like"
-        android:title="인기순" />
+        android:title="개정 필요도 순" />
     <item
         android:id="@+id/menu_sort"
-        android:title="가나다순" />
+        android:title="가나다 순" />
 </menu>
