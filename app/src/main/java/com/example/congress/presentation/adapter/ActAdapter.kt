@@ -26,20 +26,8 @@ class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
 
         init {
             binding.tvDetail.setOnClickListener { view ->
-                val actCategory = actList[adapterPosition]
-
-                // 카테고리가 "법률"인 경우
-                if (adapterPosition == 0) {
-                    // ActActivity로 이동
-                    val intent = Intent(view.context, ActActivity::class.java)
-                    view.context.startActivity(intent)
-                }
-                // 카테고리가 "개정 법률"인 경우
-                else if (adapterPosition == 1) {
-                    // RevisionActivity로 이동
-                    val intent = Intent(view.context, RevisionActivity::class.java)
-                    view.context.startActivity(intent)
-                }
+                val intent = Intent(view.context, RevisionActivity::class.java)
+                view.context.startActivity(intent)
             }
         }
 
