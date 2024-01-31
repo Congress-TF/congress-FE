@@ -274,6 +274,7 @@
 
 
                     <RatingBar
+                        android:id="@+id/ratingBar"
                         style="@android:style/Widget.DeviceDefault.Light.RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -286,6 +287,37 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView8"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="누적 개정 필요도"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_start"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_12"
+                        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="147"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -408,10 +440,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="32dp"
                     android:background="@drawable/bg_my_act"
                     android:padding="4dp"
                     android:text="전송"
                     android:textColor="@color/gray_4"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editText" />
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.congress.R
 import com.example.congress.base.BaseFragment
-import com.example.congress.data.model.ActModel
+import com.example.congress.data.model.ActHomeModel
 import com.example.congress.databinding.FragmentHomeBinding
-import com.example.congress.presentation.adapter.ActAdapter
+import com.example.congress.presentation.adapter.ActHomeAdapter
 import com.example.congress.presentation.adapter.CategoryAdapter
 import com.example.congress.presentation.adapter.CategoryDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,24 +17,22 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryDetailAdapter: CategoryDetailAdapter
-    private lateinit var actAdapter: ActAdapter
+    private lateinit var actHomeAdapter: ActHomeAdapter
     private lateinit var viewModel: HomeViewModel
     private var pageInit: Int = 0
     private var sort = ""
 
     private val actList = listOf(
-        ActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        ActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        ActModel(type = "Type", title = "의안명 3", person = "제안자 3", session = "제안회기 3"),
-        ActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        ActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        ActModel(type = "Type", title = "의안명 3", person = "제안자 3", session = "제안회기 3"),
-        ActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        ActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        ActModel(type = "Type", title = "의안명 3", person = "제안자 3", session = "제안회기 3"),
-        ActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        ActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        ActModel(type = "Type", title = "의안명 3", person = "제안자 3", session = "제안회기 3")
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
+        ActHomeModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1", star = "147"),
     )
 
     override fun createView(binding: FragmentHomeBinding) {
@@ -53,7 +51,7 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
 
     private fun observeSelectedCategory() {
         viewModel.selectedCategory.observe(viewLifecycleOwner) { category ->
-            binding.tvActList.text = "$category 목록"
+            binding.tvActList.text = "$category 법률 목록"
         }
     }
 
@@ -63,7 +61,7 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
             viewModel.setSelectedCategory(selectedCategory)
         }
         categoryDetailAdapter = CategoryDetailAdapter()
-        actAdapter = ActAdapter()
+        actHomeAdapter = ActHomeAdapter()
 
         binding.rvActCategory.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -71,9 +69,9 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
         binding.rvActCategoryDetail.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvActCategoryDetail.adapter = categoryDetailAdapter
-        binding.rvHome.adapter = actAdapter
+        binding.rvHome.adapter = actHomeAdapter
 
-        actAdapter.setActList(actList)
+        actHomeAdapter.setActList(actList)
     }
 
     private fun showSortingMenu(view: View) {
@@ -86,12 +84,12 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
             when (item.itemId) {
                 R.id.menu_sort_like -> {
                     sort = "like"
-                    binding.tvSorting.text = "인기순"
+                    binding.tvSorting.text = "개정 필요도 순"
                 }
 
                 R.id.menu_sort -> {
                     sort = "asc"
-                    binding.tvSorting.text = "가나다순"
+                    binding.tvSorting.text = "가나다 순"
                 }
             }
             true

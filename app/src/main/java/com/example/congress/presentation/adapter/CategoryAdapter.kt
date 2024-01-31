@@ -9,7 +9,7 @@ import com.example.congress.databinding.ItemCategoryBinding
 
 class CategoryAdapter(private val onCategorySelected: (String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var selectedPosition = 0
-    private var actList = listOf("법률", "개정 법률")
+    private var actList = listOf("정족수 충족", "정족수 미충족")
 
     inner class ViewHolder(val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
