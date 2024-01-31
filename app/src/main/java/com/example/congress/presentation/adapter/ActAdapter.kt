@@ -4,11 +4,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.congress.data.model.ActModel
 import com.example.congress.databinding.ItemActBinding
 import com.example.congress.presentation.ui.act.ActActivity
+import com.example.congress.presentation.ui.revision.RevisionActivity
 
 class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
     private lateinit var itemClickListener: OnItemClickListener
@@ -26,11 +26,23 @@ class ActAdapter : RecyclerView.Adapter<ActAdapter.ViewHolder>() {
 
         init {
             binding.tvDetail.setOnClickListener { view ->
-                val context = view.context
-                val intent = Intent(context, ActActivity::class.java)
-                ContextCompat.startActivity(context, intent, null)
+                val actCategory = actList[adapterPosition]
+
+                // 카테고리가 "법률"인 경우
+                if (adapterPosition == 0) {
+                    // ActActivity로 이동
+                    val intent = Intent(view.context, ActActivity::class.java)
+                    view.context.startActivity(intent)
+                }
+                // 카테고리가 "개정 법률"인 경우
+                else if (adapterPosition == 1) {
+                    // RevisionActivity로 이동
+                    val intent = Intent(view.context, RevisionActivity::class.java)
+                    view.context.startActivity(intent)
+                }
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
