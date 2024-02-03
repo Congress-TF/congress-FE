@@ -64,11 +64,10 @@
 
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/tv_hg_nm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="의원명"
                         android:textSize="32sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +87,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_hg_nm"
                         app:layout_constraintVertical_bias="0.0">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -194,77 +193,81 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_bth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="1942-06-05"
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:layout_editor_absoluteY="240dp" />
 
                             <TextView
+                                android:id="@+id/tv_gender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="남"
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:layout_editor_absoluteY="240dp" />
 
                             <TextView
+                                android:id="@+id/tv_reele"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="1선"
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:layout_editor_absoluteY="240dp" />
 
                             <TextView
+                                android:id="@+id/tv_units"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="제 20대"
+                                android:text=""
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:layout_editor_absoluteY="240dp" />
 
                             <TextView
+                                android:id="@+id/tv_unit_nm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="제 20대"
+                                android:text=""
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:layout_editor_absoluteY="240dp" />
 
                             <TextView
+                                android:id="@+id/tv_poly"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="무소속"
+                                android:text=""
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:layout_editor_absoluteY="240dp" />
 
                             <TextView
+                                android:id="@+id/tv_orig"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="울산 울주군"
+                                android:text=""
                                 android:textColor="@color/gray_4"
                                 android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -291,27 +294,27 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
                 <TextView
-                    android:id="@+id/tv_date"
+                    android:id="@+id/tv_date_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="2016.05.30~2020.05.29"
+                    android:text=""
                     android:textColor="@color/gray_4"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_sg"
+                    android:id="@+id/tv_sj_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="제20대 무소속 울산 울주군"
+                    android:text=""
                     android:textColor="@color/gray_4"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date_one" />
 
 
                 <TextView
@@ -324,30 +327,30 @@
                     android:textColor="@color/gray_4"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_sg" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sj_one" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/tv_date_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="2018.07.16~2020.05.29"
+                    android:text=""
                     android:textColor="@color/gray_4"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/tv_sj_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="제20대 산업통상자원중소벤처기업위원회"
+                    android:text=""
                     android:textColor="@color/gray_4"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date_two" />
 
 
                 <View
@@ -357,7 +360,7 @@
                     android:layout_marginTop="32dp"
                     android:background="@color/gray_3"
                     app:layout_constraintBottom_toTopOf="@+id/cl_score"
-                    app:layout_constraintTop_toBottomOf="@id/textView17" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_sj_two" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

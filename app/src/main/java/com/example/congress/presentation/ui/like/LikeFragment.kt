@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
     private lateinit var adapter: LegislatorAdapter
     private lateinit var viewModel: LikeViewModel
+    private val userId = userId
 
     private val legislatorList : MutableList<LegislatorModel> = mutableListOf()
 
@@ -43,7 +44,7 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
 
 
     private fun setAdapter() {
-        adapter = LegislatorAdapter()
+        adapter = LegislatorAdapter(userId = userId)
         binding.rvHome.adapter = adapter
 
         adapter.setActList(legislatorList)
