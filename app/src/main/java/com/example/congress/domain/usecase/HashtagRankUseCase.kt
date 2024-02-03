@@ -8,8 +8,8 @@ class HashtagRankUseCase @Inject constructor(
     private val hashtagRankRepository: HashtagRankRepository
 ) {
     suspend operator fun invoke(
-        id: String
+        name: String
     ) : HashtagRankResponse {
-        return hashtagRankRepository.hashtagRank(id)
+        return hashtagRankRepository.hashtagRank(name)
     }
 }

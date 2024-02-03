@@ -39,8 +39,8 @@ interface ApiService {
         @Body initMemberModel: MemberSignInRequest
     )
 
-    @GET("/v1/hashtag/{id}/rank")
+    @GET("/v1/hashtag/{name}/rank")
     suspend fun getHashtagRank(
-        @Path("id") id: String
+        @Path("name") name: String
     ) : HashtagRankResponse
 }

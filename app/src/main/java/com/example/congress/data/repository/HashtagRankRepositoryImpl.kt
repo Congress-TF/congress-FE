@@ -10,9 +10,9 @@ import javax.inject.Singleton
 class HashtagRankRepositoryImpl @Inject constructor(
     private val service: ApiService,
 ) : HashtagRankRepository {
-    override suspend fun hashtagRank(id: String): HashtagRankResponse {
+    override suspend fun hashtagRank(name: String): HashtagRankResponse {
         return service.getHashtagRank(
-            id
+            name
         )
     }
 }
