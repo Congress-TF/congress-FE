@@ -1,7 +1,7 @@
 package com.example.congress.domain.repository
 
-import com.example.congress.data.model.CongressMember
+import com.example.congress.data.model.CongressMembersResponse
 
 interface LawLegislatorRepository {
-    suspend fun lawLegislator() : CongressMember
+    suspend fun lawLegislator() : CongressMembersResponse
 }

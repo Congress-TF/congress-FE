@@ -1,6 +1,6 @@
 package com.example.congress.data.repository
 
-import com.example.congress.data.model.CongressMember
+import com.example.congress.data.model.CongressMembersResponse
 import com.example.congress.data.network.ApiService
 import com.example.congress.domain.repository.LawLegislatorRepository
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class LawLegislatorRepositoryImpl @Inject constructor(
     private val service: ApiService
 ): LawLegislatorRepository {
-    override suspend fun lawLegislator() : CongressMember {
+    override suspend fun lawLegislator() : CongressMembersResponse {
         return service.getLawLegislator()
     }
 }
