@@ -4,6 +4,7 @@ import com.example.congress.data.network.ApiService
 import com.example.congress.data.repository.HashtagRankRepositoryImpl
 import com.example.congress.data.repository.HashtagSaveRepositoryImpl
 import com.example.congress.data.repository.LawDetailRepositoryImpl
+import com.example.congress.data.repository.LawLegislatorDetailRepositoryImpl
 import com.example.congress.data.repository.LawLegislatorRepositoryImpl
 import com.example.congress.data.repository.LawListsRepositoryImpl
 import com.example.congress.data.repository.LawVoteRepositoryImpl
@@ -18,6 +19,7 @@ import com.example.congress.data.utils.AppInterceptor
 import com.example.congress.domain.repository.HashtagRankRepository
 import com.example.congress.domain.repository.HashtagSaveRepository
 import com.example.congress.domain.repository.LawDetailRepository
+import com.example.congress.domain.repository.LawLegislatorDetailRepository
 import com.example.congress.domain.repository.LawLegislatorRepository
 import com.example.congress.domain.repository.LawListsRepository
 import com.example.congress.domain.repository.LawVoteRepository
@@ -164,5 +166,11 @@ class ApiModule {
     @Provides
     fun provideLawLegislatorRepository(apiService: ApiService): LawLegislatorRepository {
         return LawLegislatorRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideLawLegislatorDetailRepository(apiService: ApiService): LawLegislatorDetailRepository {
+        return LawLegislatorDetailRepositoryImpl(apiService)
     }
 }

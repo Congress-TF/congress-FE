@@ -86,5 +86,8 @@ interface ApiService {
     suspend fun getLawLegislator(): CongressMembersResponse
 
     @GET("/v1/law/legislator/detail")
-    suspend fun getLegislatorDetail(): CongressMemberDetailResponse
+    suspend fun getLegislatorDetail(
+        @Query("userId") userId: String,
+        @Query("legislatorName") legislatorName: String,
+    ): CongressMemberDetailResponse
 }
