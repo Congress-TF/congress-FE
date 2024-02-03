@@ -12,6 +12,7 @@ import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.HashtagRankPayload
 import com.example.congress.data.model.HashtagSaveRequest
+import com.example.congress.data.model.VoteRequest
 import com.example.congress.databinding.ActivityActBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,8 +48,8 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         moveToBack()
         initLink()
 
+        postVote(userId.toString(), lawName.toString())
         postHashtag(userId.toString(), lawName.toString())
-
     }
 
     private fun observeHashtagRank() {
@@ -155,6 +156,27 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         })
     }
 
+    private fun postVote(
+        userId: String,
+        lawName: String,
+    ) {
+        binding.tvSendRat.setOnClickListener {
+            val rating = binding.ratingBar.rating.toInt()
+            val voteRequest = VoteRequest(userId, lawName, rating)
+
+            if (rating != 0) {
+                viewModel.postVote(
+                    voteRequest,
+                    onSuccess = {
+                        binding.edtHashtag.setText("")
+                        observeVoteTotal()
+                    },
+                    onError = {}
+                )
+            }
+        }
+    }
+
 
     private fun postHashtag(
         userId: String,
@@ -180,4 +202,6 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
+
+
 }

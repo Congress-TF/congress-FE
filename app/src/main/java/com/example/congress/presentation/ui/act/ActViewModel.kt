@@ -93,9 +93,21 @@ class ActViewModel @Inject constructor(
 
     fun postVote(
         voteRequest: VoteRequest,
+        onSuccess: () -> Unit,
+        onError: () -> Unit,
     ) {
         viewModelScope.launch {
-            voteUseCase.invoke(voteRequest)
+            try {
+                val response = voteUseCase.invoke(voteRequest)
+                if (response.result?.code == 200) {
+                    getVoteTotal(voteRequest.lawName)
+                    onSuccess.invoke()
+                } else {
+                    onError.invoke()
+                }
+            } catch (e: Exception) {
+                onError.invoke()
+            }
         }
     }
 
@@ -103,7 +115,7 @@ class ActViewModel @Inject constructor(
     fun postHashtagSave(
         hashtagSaveRequest: HashtagSaveRequest,
         onSuccess: () -> Unit,
-        onError: () -> Unit
+        onError: () -> Unit,
     ) {
         viewModelScope.launch {
             try {

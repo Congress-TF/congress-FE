@@ -12,6 +12,7 @@ import com.example.congress.data.model.MemberCheckResponse
 import com.example.congress.data.model.MemberMyInfoResponse
 import com.example.congress.data.model.MemberSignInRequest
 import com.example.congress.data.model.VoteRequest
+import com.example.congress.data.model.VoteResponse
 import com.example.congress.data.model.VoteTotalResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -61,7 +62,7 @@ interface ApiService {
     @POST("/v1/vote")
     suspend fun postVote(
         @Body vote: VoteRequest,
-    )
+    ): VoteResponse
 
     @GET("/v1/vote/{lawName}/total")
     suspend fun getVoteTotal(

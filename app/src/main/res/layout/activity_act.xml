@@ -255,7 +255,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/progress" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/tv_send_rat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_my_act"
+                    android:padding="4dp"
+                    android:text="전송"
+                    android:textColor="@color/gray_4"
+                    app:layout_constraintBottom_toTopOf="@+id/cl_score"
+                    app:layout_constraintStart_toEndOf="@+id/tv_think"
+                    app:layout_constraintTop_toBottomOf="@+id/progress" />
+
+                  <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -266,31 +280,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_think">
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="개정 필요도"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="@android:style/Widget.DeviceDefault.Light.RatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:numStars="5"
-                        android:rating="0"
-                        android:stepSize="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView8"
-                        app:layout_constraintTop_toTopOf="parent" />
+                      <TextView
+                          android:id="@+id/textView8"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="16dp"
+                          android:text="개정 필요도"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toTopOf="parent" />
+
+
+                      <RatingBar
+                          android:id="@+id/ratingBar"
+                          style="@android:style/Widget.DeviceDefault.Light.RatingBar"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="16dp"
+                          android:layout_marginEnd="16dp"
+                          android:numStars="5"
+                          android:rating="0"
+                          android:stepSize="1"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintStart_toEndOf="@+id/textView8"
+                          app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_12"
