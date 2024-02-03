@@ -13,7 +13,9 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
     private lateinit var adapter: LegislatorAdapter
     private lateinit var viewModel: LikeViewModel
 
-    private val legislatorList : MutableList<LegislatorModel> = mutableListOf()
+    private val legislatorList : MutableList<LegislatorModel> = mutableListOf(
+        LegislatorModel("", "", "")
+    )
 
     override fun createView(binding: FragmentLikeBinding) {
         viewModel = ViewModelProvider(this).get(LikeViewModel::class.java)
@@ -21,7 +23,7 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
 
     override fun viewCreated() {
         setAdapter()
-        observeLegislatorLists()
+//        observeLegislatorLists()
     }
 
 
