@@ -1,6 +1,7 @@
 package com.example.congress.presentation.ui.act
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.example.congress.R
@@ -12,6 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     private val viewModel: ActViewModel by viewModels()
+    private var userId: String? = null
+    private var lawName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +25,10 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     override fun initView() {
         super.initView()
         moveToBack()
+        userId = intent.getStringExtra("USER_ID")
+        lawName = intent.getStringExtra("LAW_NAME")
         viewModel.getHashtagRank(name = "예시 의안")
+        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
     }
 
     private fun observeHashtagRank() {

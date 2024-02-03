@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var actHomeAdapter: ActHomeAdapter
     private lateinit var viewModel: HomeViewModel
+    private val userId = userId
 
     private val actList: MutableList<ActHomeModel> = mutableListOf()
 
@@ -44,7 +45,7 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
     }
 
     private fun setAdapter() {
-        actHomeAdapter = ActHomeAdapter()
+        actHomeAdapter = ActHomeAdapter(userId)
         binding.rvHome.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHome.adapter = actHomeAdapter
     }

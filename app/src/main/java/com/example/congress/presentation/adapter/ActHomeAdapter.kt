@@ -9,9 +9,11 @@ import com.example.congress.data.model.ActHomeModel
 import com.example.congress.databinding.ItemActHomeBinding
 import com.example.congress.presentation.ui.act.ActActivity
 
-class ActHomeAdapter : RecyclerView.Adapter<ActHomeAdapter.ViewHolder>() {
-    private lateinit var itemClickListener: OnItemClickListener
+class ActHomeAdapter(
+    userId: String
+) : RecyclerView.Adapter<ActHomeAdapter.ViewHolder>() {
     private var actList = listOf<ActHomeModel>()
+    private var userId = userId
 
     inner class ViewHolder(val binding: ItemActHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,16 +23,16 @@ class ActHomeAdapter : RecyclerView.Adapter<ActHomeAdapter.ViewHolder>() {
                 tvNewsPerson.text = item.person
                 tvNewsSession.text = item.session
                 tvStar.text = item.star
+
+                tvDetail.setOnClickListener {
+                    val intent = Intent(itemView.context, ActActivity::class.java).apply {
+                        putExtra("USER_ID", userId)
+                        putExtra("LAW_NAME", item.title)
+                    }
+                    itemView.context.startActivity(intent)
+                }
             }
         }
-
-        init {
-            binding.tvDetail.setOnClickListener { view ->
-                val intent = Intent(view.context, ActActivity::class.java)
-                view.context.startActivity(intent)
-            }
-        }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
