@@ -1,5 +1,6 @@
 package com.example.congress.data.network
 
+import com.example.congress.data.model.HashtagRankResponse
 import com.example.congress.data.model.MemberCheckResponse
 import com.example.congress.data.model.MemberMyInfoResponse
 import com.example.congress.data.model.MemberSignInRequest
@@ -37,4 +38,9 @@ interface ApiService {
     suspend fun putMemberUpdate(
         @Body initMemberModel: MemberSignInRequest
     )
+
+    @GET("/v1/hashtag/{id}/rank")
+    suspend fun getHashtagRank(
+        @Path("id") id: String
+    ) : HashtagRankResponse
 }
