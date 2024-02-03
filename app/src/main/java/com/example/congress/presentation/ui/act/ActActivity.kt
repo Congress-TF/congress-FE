@@ -74,8 +74,17 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     private fun observeLawVote() {
         viewModel.lawVote.observe(this) { response ->
             response?.let {
-                val voteCount = response.payload?.yesCount ?: 0
+                val yesCountString = response.payload?.yesCount
+                val voteCount = yesCountString?.toIntOrNull() ?: 0 // 기본값을 0으로 설정하거나 다른 기본값으로 설정할 수 있습니다.
                 binding.tvVote.text = "${voteCount}표"
+
+                val maxProgress = 76
+                val progress = if (voteCount >= maxProgress) {
+                    maxProgress
+                } else {
+                    voteCount
+                }
+                binding.progress.progress = progress
             }
         }
     }

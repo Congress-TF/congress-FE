@@ -55,7 +55,9 @@ class ActViewModel @Inject constructor(
             val lawVote = lawVoteUseCase(
                 userId, lawName
             )
-            _lawVote.value = lawVote
+            lawVote?.let {
+                _lawVote.value = lawVote
+            }
         }
     }
 

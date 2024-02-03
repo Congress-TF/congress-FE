@@ -1,5 +1,6 @@
 package com.example.congress.data.network
 
+import com.example.congress.data.model.CongressMemberDetailResponse
 import com.example.congress.data.model.CongressMembersResponse
 import com.example.congress.data.model.HashtagRankResponse
 import com.example.congress.data.model.HashtagSaveRequest
@@ -83,4 +84,7 @@ interface ApiService {
 
     @GET("/v1/law/legislator")
     suspend fun getLawLegislator(): CongressMembersResponse
+
+    @GET("/v1/law/legislator/detail")
+    suspend fun getLegislatorDetail(): CongressMemberDetailResponse
 }
