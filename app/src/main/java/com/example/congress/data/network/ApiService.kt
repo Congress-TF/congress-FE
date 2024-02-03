@@ -39,8 +39,38 @@ interface ApiService {
         @Body initMemberModel: MemberSignInRequest
     )
 
+    @POST("/v1/hashtag/save")
+    suspend fun postHashtagSave() {
+
+    }
+
     @GET("/v1/hashtag/{name}/rank")
     suspend fun getHashtagRank(
         @Path("name") name: String
     ) : HashtagRankResponse
+
+    @POST("/v1/vote")
+    suspend fun postVote() {
+
+    }
+
+    @GET("/v1/vote/{name}/total")
+    suspend fun getVoteTotal() {
+
+    }
+
+    @GET("/v1/law/voteresult")
+    suspend fun getLawVoteResult() {
+
+    }
+
+    @GET("/v1/law/detail")
+    suspend fun getLawDetail() {
+
+    }
+
+    @GET("/v1/law/lists")
+    suspend fun getLawLists() {
+
+    }
 }
