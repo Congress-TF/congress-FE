@@ -30,7 +30,7 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         viewModel.getHashtagRank(lawName = lawName.toString())
         viewModel.getVoteTotal(lawName = lawName.toString())
 
-//        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
+        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
     }
 
     private fun observeHashtagRank() {

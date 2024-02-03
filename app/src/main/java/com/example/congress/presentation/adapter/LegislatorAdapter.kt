@@ -15,8 +15,9 @@ class LegislatorAdapter : RecyclerView.Adapter<LegislatorAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: LegislatorModel) {
             binding.apply {
-                tvNewsPerson.text = item.person
-                tvNewsSession.text = item.session
+                tvNewsTitle.text = item.name
+                tvNewsPerson.text = item.section
+                tvNewsSession.text = item.unit
             }
         }
 
