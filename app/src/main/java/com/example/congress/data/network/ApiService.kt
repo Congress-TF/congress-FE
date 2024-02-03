@@ -11,6 +11,8 @@ import com.example.congress.data.model.LawVoteResponse
 import com.example.congress.data.model.MemberCheckResponse
 import com.example.congress.data.model.MemberMyInfoResponse
 import com.example.congress.data.model.MemberSignInRequest
+import com.example.congress.data.model.MyPageLegislatorResponse
+import com.example.congress.data.model.MyPageVoteResponse
 import com.example.congress.data.model.VoteRequest
 import com.example.congress.data.model.VoteResponse
 import com.example.congress.data.model.VoteTotalResponse
@@ -92,4 +94,15 @@ interface ApiService {
         @Query("userId") userId: String,
         @Query("legislatorName") legislatorName: String,
     ): CongressMemberDetailResponse
+
+
+    @GET("/v1/mypage/vote")
+    suspend fun getMyPageVote(
+        @Query("userId") userId: String,
+    ): MyPageVoteResponse
+
+    @GET("/v1/mypage/legislator")
+    suspend fun getMyPageLegislator(
+        @Query("userId") userId: String,
+    ): MyPageLegislatorResponse
 }
