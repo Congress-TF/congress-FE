@@ -12,4 +12,9 @@
 
     <!--버튼 -->
     <string name="btn_next">다음</string>
+
+
+<!--    법률-->
+    <string name="law_list">법률 목록</string>
+
 </resources>
