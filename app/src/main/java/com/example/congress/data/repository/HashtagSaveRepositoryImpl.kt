@@ -11,6 +11,6 @@ class HashtagSaveRepositoryImpl @Inject constructor(
     private val service: ApiService
 ): HashtagSaveRepository {
     override suspend fun hashtagSave(hashtag: HashtagSaveRequest) {
-        TODO("Not yet implemented")
+        return service.postHashtagSave(hashtag)
     }
 }
