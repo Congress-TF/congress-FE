@@ -1,9 +1,16 @@
 package com.example.congress.data.network
 
+import com.example.congress.data.model.CongressMember
 import com.example.congress.data.model.HashtagRankResponse
+import com.example.congress.data.model.HashtagSaveRequest
+import com.example.congress.data.model.LawDetailResponse
+import com.example.congress.data.model.LawListsResponse
+import com.example.congress.data.model.LawVoteResponse
 import com.example.congress.data.model.MemberCheckResponse
 import com.example.congress.data.model.MemberMyInfoResponse
 import com.example.congress.data.model.MemberSignInRequest
+import com.example.congress.data.model.VoteRequest
+import com.example.congress.data.model.VoteTotalResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -16,61 +23,64 @@ interface ApiService {
 
     @POST("/v1/member/signin")
     suspend fun postMemberSignin(
-        @Body initMemberModel: MemberSignInRequest
+        @Body initMemberModel: MemberSignInRequest,
     )
 
     @DELETE("/v1/member/{sampleUserId}/signout")
     suspend fun deleteMemberSignOut(
-        @Path("sampleUserId") sampleUserId: String
+        @Path("sampleUserId") sampleUserId: String,
     )
 
     @GET("/v1/member/check")
     suspend fun getMemberCheck(
-        @Query("userId") userId: String
+        @Query("userId") userId: String,
     ): MemberCheckResponse
 
     @GET("/v1/member/myinfo")
     suspend fun getMemberMyInfo(
-        @Query("userId") userId: String
+        @Query("userId") userId: String,
     ): MemberMyInfoResponse
 
     @PUT("/v1/member/update")
     suspend fun putMemberUpdate(
-        @Body initMemberModel: MemberSignInRequest
+        @Body initMemberModel: MemberSignInRequest,
     )
 
     @POST("/v1/hashtag/save")
-    suspend fun postHashtagSave() {
-
-    }
+    suspend fun postHashtagSave(
+        @Body hashtagSave: HashtagSaveRequest,
+    )
 
     @GET("/v1/hashtag/{name}/rank")
     suspend fun getHashtagRank(
-        @Path("name") name: String
-    ) : HashtagRankResponse
+        @Path("name") name: String,
+    ): HashtagRankResponse
 
     @POST("/v1/vote")
-    suspend fun postVote() {
-
-    }
+    suspend fun postVote(
+        @Body vote: VoteRequest,
+    )
 
     @GET("/v1/vote/{name}/total")
-    suspend fun getVoteTotal() {
-
-    }
+    suspend fun getVoteTotal(
+        @Path("name") name: String,
+    ): VoteTotalResponse
 
     @GET("/v1/law/voteresult")
-    suspend fun getLawVoteResult() {
-
-    }
+    suspend fun getLawVoteResult(
+        @Query("userId") userId: String,
+        @Query("lawName") lawName: String,
+    ): LawVoteResponse
 
     @GET("/v1/law/detail")
-    suspend fun getLawDetail() {
-
-    }
+    suspend fun getLawDetail(
+        @Query("userId") userId: String,
+        @Query("lawName") lawName: String,
+    ): LawDetailResponse
 
     @GET("/v1/law/lists")
-    suspend fun getLawLists() {
+    suspend fun getLawLists(): LawListsResponse
 
-    }
+    @GET("/v1/law/legislator")
+    suspend fun getLawLegislator(): CongressMember
 }
