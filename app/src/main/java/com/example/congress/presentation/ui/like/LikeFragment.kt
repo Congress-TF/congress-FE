@@ -1,18 +1,15 @@
 package com.example.congress.presentation.ui.like
 
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.congress.R
 import com.example.congress.base.BaseFragment
 import com.example.congress.data.model.ActModel
 import com.example.congress.databinding.FragmentLikeBinding
 import com.example.congress.presentation.adapter.ActAdapter
-import com.example.congress.presentation.adapter.CategoryDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.fragment_like) {
-    private lateinit var categoryDetailAdapter: CategoryDetailAdapter
     private lateinit var adapter: ActAdapter
     private lateinit var viewModel: LikeViewModel
 
@@ -36,12 +33,7 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
     }
 
     private fun setAdapter() {
-        categoryDetailAdapter = CategoryDetailAdapter()
         adapter = ActAdapter()
-
-        binding.rvActCategoryDetail.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvActCategoryDetail.adapter = categoryDetailAdapter
         binding.rvHome.adapter = adapter
 
         adapter.setActList(likeActList)
