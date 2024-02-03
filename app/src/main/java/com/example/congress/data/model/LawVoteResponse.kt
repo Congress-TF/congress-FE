@@ -6,13 +6,13 @@ data class LawVoteResponse(
     @field:Json(name = "result")
     val result: ApiResponse?,
     @field:Json(name = "payload")
-    val payload: LawVotePayload
+    val payload: LawVotePayload?
 )
 
 
 data class LawVotePayload(
     @field:Json(name = "billNm")
-    val billNm: String,
+    val billNm: String?,
     @field:Json(name = "yesCount")
-    val yesCount: String
+    val yesCount: String?
 )

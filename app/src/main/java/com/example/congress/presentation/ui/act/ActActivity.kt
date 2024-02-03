@@ -23,6 +23,7 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         observeHashtagRank()
         observeVoteTotal()
         observeLawDetail()
+        observeLawVote()
     }
 
     override fun initView() {
@@ -30,10 +31,10 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
 
         userId = intent.getStringExtra("USER_ID")
         lawName = intent.getStringExtra("LAW_NAME")
-
+        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
         viewModel.getHashtagRank(lawName = lawName.toString())
         viewModel.getVoteTotal(lawName = lawName.toString())
-        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
+        viewModel.getLawVote(userId = userId.toString(), lawName = lawName.toString())
 
         moveToBack()
         initLink()
@@ -69,6 +70,16 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
+
+    private fun observeLawVote() {
+        viewModel.lawVote.observe(this) { response ->
+            response?.let {
+                val voteCount = response.payload?.yesCount ?: 0
+                binding.tvVote.text = "${voteCount}표"
+            }
+        }
+    }
+
 
 
     private fun showEmptyHashtagsMessage() {

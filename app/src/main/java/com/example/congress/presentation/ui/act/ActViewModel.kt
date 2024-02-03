@@ -6,9 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.congress.base.BaseViewModel
 import com.example.congress.data.model.HashtagRankResponse
 import com.example.congress.data.model.LawDetailResponse
+import com.example.congress.data.model.LawVoteResponse
 import com.example.congress.data.model.VoteTotalResponse
 import com.example.congress.domain.usecase.HashtagRankUseCase
 import com.example.congress.domain.usecase.LawDetailUseCase
+import com.example.congress.domain.usecase.LawVoteUseCase
 import com.example.congress.domain.usecase.VoteTotalUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,10 +20,14 @@ import javax.inject.Inject
 class ActViewModel @Inject constructor(
     private val hashtagRankUseCase: HashtagRankUseCase,
     private val lawDetailUseCase: LawDetailUseCase,
-    private val voteTotalUseCase: VoteTotalUseCase
+    private val voteTotalUseCase: VoteTotalUseCase,
+    private val lawVoteUseCase: LawVoteUseCase,
 ) : BaseViewModel() {
     private val _lawDetail = MutableLiveData<LawDetailResponse>()
     val lawDetail: LiveData<LawDetailResponse> = _lawDetail
+
+    private val _lawVote = MutableLiveData<LawVoteResponse>()
+    val lawVote: LiveData<LawVoteResponse> = _lawVote
 
     private val _voteTotal = MutableLiveData<VoteTotalResponse>()
     val voteTotal: LiveData<VoteTotalResponse> = _voteTotal
@@ -38,6 +44,18 @@ class ActViewModel @Inject constructor(
                 userId, lawName
             )
             _lawDetail.value = detail
+        }
+    }
+
+    fun getLawVote(
+        userId: String,
+        lawName: String
+    ) {
+        viewModelScope.launch {
+            val lawVote = lawVoteUseCase(
+                userId, lawName
+            )
+            _lawVote.value = lawVote
         }
     }
 
