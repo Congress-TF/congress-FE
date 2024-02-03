@@ -1,5 +1,7 @@
 package com.example.congress.presentation.ui.act
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -20,17 +22,21 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         initView()
         observeHashtagRank()
         observeVoteTotal()
+        observeLawDetail()
     }
 
     override fun initView() {
         super.initView()
-        moveToBack()
+
         userId = intent.getStringExtra("USER_ID")
         lawName = intent.getStringExtra("LAW_NAME")
+
         viewModel.getHashtagRank(lawName = lawName.toString())
         viewModel.getVoteTotal(lawName = lawName.toString())
-
         viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
+
+        moveToBack()
+        initLink()
     }
 
     private fun observeHashtagRank() {
@@ -49,6 +55,17 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         viewModel.voteTotal.observe(this) { response ->
             response?.let {
                 binding.tvScore.text = response.payload.toString()
+            }
+        }
+    }
+
+    private fun observeLawDetail() {
+        viewModel.lawDetail.observe(this) { response ->
+            response?.let {
+                binding.tvBillNo.text = response.payload?.billNo.toString()
+                binding.tvLawTitle.text = response.payload?.billNm.toString()
+                binding.tvPerson.text = response.payload?.proposer.toString()
+                binding.tvDt.text = response.payload?.proposerDt.toString()
             }
         }
     }
@@ -81,4 +98,19 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             finish()
         }
     }
+
+    private fun initLink() {
+        binding.btnLink.setOnClickListener {
+            val detailLink = viewModel.lawDetail.value?.payload?.detailLink
+            if (!detailLink.isNullOrEmpty()) {
+                openWebPage(detailLink)
+            }
+        }
+    }
+
+    private fun openWebPage(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+
 }

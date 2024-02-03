@@ -64,28 +64,28 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/tv_bill_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="의안번호"
+                        android:text=""
                         android:textColor="@color/gray_4"
                         android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tv_law_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="택시운송사업의 발전에 관한 법률 일부개정법률안"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_bill_no" />
 
                     <ImageView
                         android:id="@+id/imageView"
@@ -95,7 +95,7 @@
                         android:layout_marginTop="20dp"
                         android:src="@drawable/ic_person"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_law_title" />
 
                     <TextView
                         android:id="@+id/tv_news_person"
@@ -107,19 +107,19 @@
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_law_title" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tv_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="34dp"
                         android:layout_marginTop="16dp"
-                        android:text="최인호의원 등 10인"
+                        android:text=""
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintStart_toEndOf="@+id/tv_news_person"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_law_title" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -136,17 +136,18 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_news_person" />
 
                     <TextView
+                        android:id="@+id/tv_dt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="24dp"
-                        android:text="제21대 (2020~2024) 제411회"
+                        android:text=""
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_person" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
