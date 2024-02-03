@@ -4,6 +4,7 @@ import com.example.congress.data.model.CongressMemberDetailResponse
 import com.example.congress.data.model.CongressMembersResponse
 import com.example.congress.data.model.HashtagRankResponse
 import com.example.congress.data.model.HashtagSaveRequest
+import com.example.congress.data.model.HashtagSaveResponse
 import com.example.congress.data.model.LawDetailResponse
 import com.example.congress.data.model.LawListsResponse
 import com.example.congress.data.model.LawVoteResponse
@@ -50,7 +51,7 @@ interface ApiService {
     @POST("/v1/hashtag/save")
     suspend fun postHashtagSave(
         @Body hashtagSave: HashtagSaveRequest,
-    )
+    ): HashtagSaveResponse
 
     @GET("/v1/hashtag/{name}/rank")
     suspend fun getHashtagRank(

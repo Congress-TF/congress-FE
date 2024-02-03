@@ -1,6 +1,7 @@
 package com.example.congress.domain.usecase
 
 import com.example.congress.data.model.HashtagSaveRequest
+import com.example.congress.data.model.HashtagSaveResponse
 import com.example.congress.domain.repository.HashtagSaveRepository
 import javax.inject.Inject
 
@@ -9,7 +10,7 @@ class HashtagSaveUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         hashtagSaveRequest: HashtagSaveRequest
-    ) {
-        hashtagSaveRepository.hashtagSave(hashtagSaveRequest)
+    ) : HashtagSaveResponse {
+        return hashtagSaveRepository.hashtagSave(hashtagSaveRequest)
     }
 }

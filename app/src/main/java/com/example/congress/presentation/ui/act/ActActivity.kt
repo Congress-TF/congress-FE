@@ -3,11 +3,15 @@ package com.example.congress.presentation.ui.act
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.HashtagRankPayload
+import com.example.congress.data.model.HashtagSaveRequest
 import com.example.congress.databinding.ActivityActBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +24,7 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
+
         observeHashtagRank()
         observeVoteTotal()
         observeLawDetail()
@@ -29,15 +34,21 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     override fun initView() {
         super.initView()
 
+
         userId = intent.getStringExtra("USER_ID")
         lawName = intent.getStringExtra("LAW_NAME")
+
         viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
         viewModel.getHashtagRank(lawName = lawName.toString())
         viewModel.getVoteTotal(lawName = lawName.toString())
         viewModel.getLawVote(userId = userId.toString(), lawName = lawName.toString())
 
+        hashtagTextWatcher()
         moveToBack()
         initLink()
+
+        postHashtag(userId.toString(), lawName.toString())
+
     }
 
     private fun observeHashtagRank() {
@@ -51,6 +62,7 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
+
 
     private fun observeVoteTotal() {
         viewModel.voteTotal.observe(this) { response ->
@@ -75,7 +87,8 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         viewModel.lawVote.observe(this) { response ->
             response?.let {
                 val yesCountString = response.payload?.yesCount
-                val voteCount = yesCountString?.toIntOrNull() ?: 0 // 기본값을 0으로 설정하거나 다른 기본값으로 설정할 수 있습니다.
+                val voteCount =
+                    yesCountString?.toIntOrNull() ?: 0 // 기본값을 0으로 설정하거나 다른 기본값으로 설정할 수 있습니다.
                 binding.tvVote.text = "${voteCount}표"
 
                 val maxProgress = 76
@@ -88,7 +101,6 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
-
 
 
     private fun showEmptyHashtagsMessage() {
@@ -133,4 +145,39 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         startActivity(intent)
     }
 
+    private fun hashtagTextWatcher() {
+        binding.edtHashtag.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                viewModel.setHashtag(p0.toString())
+            }
+        })
+    }
+
+
+    private fun postHashtag(
+        userId: String,
+        lawName: String,
+    ) {
+        binding.tvSend.setOnClickListener {
+            val hashtag = viewModel.hashtag.value.toString()
+
+            val hashtagSaveRequest = HashtagSaveRequest(userId, lawName, hashtag)
+
+            if (!hashtag.isNullOrEmpty()) {
+                viewModel.postHashtagSave(
+                    hashtagSaveRequest,
+                    onSuccess = {
+                        binding.edtHashtag.setText("")
+                        Toast.makeText(this, "의견을 남겼어요", Toast.LENGTH_SHORT).show()
+                        observeHashtagRank()
+                    },
+                    onError = {
+                        Toast.makeText(this, "의견을 남기는데 실패했어요", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }
+        }
+    }
 }
