@@ -61,9 +61,9 @@ interface ApiService {
         @Body vote: VoteRequest,
     )
 
-    @GET("/v1/vote/{name}/total")
+    @GET("/v1/vote/{lawName}/total")
     suspend fun getVoteTotal(
-        @Path("name") name: String,
+        @Path("lawName") lawName: String,
     ): VoteTotalResponse
 
     @GET("/v1/law/voteresult")

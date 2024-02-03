@@ -1,7 +1,6 @@
 package com.example.congress.presentation.ui.act
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.example.congress.R
@@ -20,6 +19,7 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         super.onCreate(savedInstanceState)
         initView()
         observeHashtagRank()
+        observeVoteTotal()
     }
 
     override fun initView() {
@@ -27,8 +27,10 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         moveToBack()
         userId = intent.getStringExtra("USER_ID")
         lawName = intent.getStringExtra("LAW_NAME")
-        viewModel.getHashtagRank(name = "예시 의안")
-        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
+        viewModel.getHashtagRank(lawName = lawName.toString())
+        viewModel.getVoteTotal(lawName = lawName.toString())
+
+//        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
     }
 
     private fun observeHashtagRank() {
@@ -42,6 +44,15 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
+
+    private fun observeVoteTotal() {
+        viewModel.voteTotal.observe(this) { response ->
+            response?.let {
+                binding.tvScore.text = response.payload.toString()
+            }
+        }
+    }
+
 
     private fun showEmptyHashtagsMessage() {
         val emptyHashtagsMessage = "아직 해시태그가 없어요"

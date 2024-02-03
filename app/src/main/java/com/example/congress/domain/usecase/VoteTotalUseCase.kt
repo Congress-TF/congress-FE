@@ -8,8 +8,8 @@ class VoteTotalUseCase @Inject constructor(
     private val voteTotalRepository: VoteTotalRepository
 ) {
     suspend operator fun invoke(
-        name: String
+        lawName: String
     ) : VoteTotalResponse {
-        return voteTotalRepository.voteTotal(name)
+        return voteTotalRepository.voteTotal(lawName)
     }
 }

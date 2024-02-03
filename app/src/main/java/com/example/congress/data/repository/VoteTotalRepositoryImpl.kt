@@ -10,9 +10,9 @@ import javax.inject.Singleton
 class VoteTotalRepositoryImpl @Inject constructor(
     private val service: ApiService
 ): VoteTotalRepository {
-    override suspend fun voteTotal(name: String): VoteTotalResponse {
+    override suspend fun voteTotal(lawName: String): VoteTotalResponse {
         return service.getVoteTotal(
-            name
+            lawName
         )
     }
 }
