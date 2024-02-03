@@ -43,7 +43,9 @@ class MyPageFragment(private var userId: String) :
 
     private fun moveToMyAct() {
         activity?.let {
-            val intent = Intent(it, MyActActivity::class.java)
+            val intent = Intent(it, MyActActivity::class.java).apply {
+                putExtra("USER_ID", userId)
+            }
             it.startActivity(intent)
         }
     }

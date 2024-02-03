@@ -1,6 +1,7 @@
 package com.example.congress.presentation.ui.mypage.myAct
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.MyActModel
@@ -10,8 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_act) {
-
+    private val viewModel: MyActViewModel by viewModels()
     private lateinit var adapter: MyActAdapter
+    private var userId: String? = null
 
     private val myActList = listOf(
         MyActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
@@ -27,6 +29,9 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userId = intent.getStringExtra("USER_ID")
+        viewModel.getActLists(userId = userId.toString())
+
         initView()
         moveToBack()
     }
