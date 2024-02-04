@@ -26,4 +26,8 @@ class MyActViewModel @Inject constructor(
             _actLists.value = actList
         }
     }
+
+    fun updateLawLists(userId: String) {
+        getActLists(userId)
+    }
 }

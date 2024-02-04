@@ -50,6 +50,6 @@ class ActHomeAdapter(
 
     fun setActList(list: List<ActHomeModel>) {
         actList = list
-        notifyDataSetChanged()
+        notifyDataSetChanged() // 데이터 변경 시 RecyclerView 업데이트
     }
 }

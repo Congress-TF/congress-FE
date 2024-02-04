@@ -20,16 +20,15 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userId = intent.getStringExtra("USER_ID")
-        viewModel.getActLists(userId = userId.toString())
-        observeLawLists()
-
         initView()
+        observeLawLists()
         moveToBack()
     }
 
     override fun initView() {
         super.initView()
         setAdapter()
+        viewModel.getActLists(userId = userId.toString())
     }
 
     private fun moveToBack() {
@@ -41,7 +40,7 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
     private fun observeLawLists() {
         viewModel.actLists.observe(this) { lawLists ->
             if (lawLists.payload.isNullOrEmpty()) {
-                binding.tvSorting.text = "아직 개정 필요도에 투표 하지 않았어요"
+                binding.tvSorting.text = "아직 개정 필요도에 투표하지 않았어요"
             } else {
                 myActList.clear()
                 lawLists.payload.forEach { lawItem ->
@@ -60,9 +59,6 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
 
     private fun setAdapter() {
         adapter = MyActAdapter(userId = userId.toString())
-
         binding.rvHome.adapter = adapter
-
-        adapter.setActList(myActList)
     }
 }

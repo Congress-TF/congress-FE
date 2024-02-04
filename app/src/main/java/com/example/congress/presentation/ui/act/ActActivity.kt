@@ -14,11 +14,16 @@ import com.example.congress.data.model.HashtagRankPayload
 import com.example.congress.data.model.HashtagSaveRequest
 import com.example.congress.data.model.VoteRequest
 import com.example.congress.databinding.ActivityActBinding
+import com.example.congress.presentation.ui.home.HomeViewModel
+import com.example.congress.presentation.ui.mypage.myAct.MyActViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     private val viewModel: ActViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
+    private val myActViewModel: MyActViewModel by viewModels()
+
     private var userId: String? = null
     private var lawName: String? = null
 
@@ -128,6 +133,11 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
     }
 
     private fun displayHashtags(hashtags: List<HashtagRankPayload>) {
+        val parentLayout = binding.clComment
+        parentLayout.removeAllViews()
+
+        binding.textView9.text = "많이 언급된 키워드"
+
         val hashtagViews = listOf(binding.tvFirst, binding.tvSecond, binding.tvThird)
 
         for (i in 0 until 3) {
@@ -136,11 +146,14 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
                     visibility = View.VISIBLE
                     text = "#${hashtags[i].tag}"
                 }
+                parentLayout.addView(hashtagViews[i])
             } else {
                 hashtagViews[i].visibility = View.GONE
             }
         }
     }
+
+
 
     private fun moveToBack() {
         binding.ivBack.setOnClickListener {
@@ -185,6 +198,8 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
                     voteRequest,
                     onSuccess = {
                         viewModel.getVoteTotal(lawName)
+                        homeViewModel.updateLawLists()
+                        myActViewModel.updateLawLists(userId)
                         Toast.makeText(this, "개정 필요도에 투표했어요", Toast.LENGTH_SHORT).show()
                     },
                     onError = {
@@ -210,6 +225,8 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
                     onSuccess = {
                         viewModel.getHashtagRank(lawName)
                         binding.edtHashtag.setText("")
+                        homeViewModel.updateLawLists()
+                        myActViewModel.updateLawLists(userId)
                         Toast.makeText(this, "의견을 남겼어요", Toast.LENGTH_SHORT).show()
                     },
                     onError = {
@@ -219,7 +236,4 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
-
-
-
 }

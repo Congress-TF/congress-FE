@@ -19,11 +19,16 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
 
     override fun createView(binding: FragmentHomeBinding) {
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        observeLawLists()
     }
 
     override fun viewCreated() {
         setAdapter()
-        observeLawLists()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getLawLists()
     }
 
     private fun observeLawLists() {
