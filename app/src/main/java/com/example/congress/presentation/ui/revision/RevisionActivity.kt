@@ -24,8 +24,10 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
         userId = intent.getStringExtra("USER_ID")
         legislatorName = intent.getStringExtra("LEGISLATOR_NAME")
         viewModel.getLegislatorMemberDetail(userId = userId.toString(), legislatorName = legislatorName.toString())
+        viewModel.getVoteLegislatorTotal(legislatorName = legislatorName.toString())
 
         observeLegislatorDetail()
+        observeVoteTotal()
         moveToBack()
     }
 
@@ -51,6 +53,14 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
     private fun moveToBack() {
         binding.ivBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun observeVoteTotal() {
+        viewModel.voteTotal.observe(this) { response ->
+            response?.let {
+                binding.tvScore.text = response.payload.toString()
+            }
         }
     }
 }

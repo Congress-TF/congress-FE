@@ -95,6 +95,15 @@ interface ApiService {
         @Query("legislatorName") legislatorName: String,
     ): CongressMemberDetailResponse
 
+    @POST("/v1/vote/legislator")
+    suspend fun postVoteLegislator(
+        @Body vote: VoteRequest,
+    ): VoteResponse
+
+    @GET("/v1/vote/{legislatorName}/total")
+    suspend fun getVoteLegislatorTotal(
+        @Path("legislatorName") legislatorName: String,
+    ): VoteTotalResponse
 
     @GET("/v1/mypage/vote")
     suspend fun getMyPageVote(

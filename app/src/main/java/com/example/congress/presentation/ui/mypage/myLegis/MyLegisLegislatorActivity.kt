@@ -20,7 +20,7 @@ class MyLegisLegislatorActivity : BaseActivity<ActivityMyLegisBinding>(R.layout.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userId = intent.getStringExtra("USER_ID")
-        viewModel.getlegislatorLists(userId = userId.toString())
+        viewModel.getLegislatorLists(userId = userId.toString())
         observeLegislatorLists()
 
         initView()
