@@ -24,6 +24,11 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
+        viewModel.getHashtagRank(lawName = lawName.toString())
+        viewModel.getVoteTotal(lawName = lawName.toString())
+        viewModel.getLawVote(userId = userId.toString(), lawName = lawName.toString())
         initView()
 
         observeHashtagRank()
@@ -54,11 +59,6 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
 
         userId = intent.getStringExtra("USER_ID")
         lawName = intent.getStringExtra("LAW_NAME")
-
-        viewModel.getLawDetail(userId = userId.toString(), lawName = lawName.toString())
-        viewModel.getHashtagRank(lawName = lawName.toString())
-        viewModel.getVoteTotal(lawName = lawName.toString())
-        viewModel.getLawVote(userId = userId.toString(), lawName = lawName.toString())
 
         hashtagTextWatcher()
         moveToBack()

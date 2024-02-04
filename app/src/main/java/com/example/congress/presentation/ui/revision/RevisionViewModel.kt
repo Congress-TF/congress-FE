@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.congress.base.BaseViewModel
 import com.example.congress.data.model.CongressMemberDetailResponse
-import com.example.congress.data.model.VoteRequest
+import com.example.congress.data.model.VoteLegislatorRequest
 import com.example.congress.data.model.VoteTotalResponse
 import com.example.congress.domain.usecase.LawLegislatorDetailUseCase
 import com.example.congress.domain.usecase.VoteLegislatorTotalUseCase
@@ -48,7 +48,7 @@ class RevisionViewModel @Inject constructor(
     }
 
     fun postVote(
-        voteRequest: VoteRequest,
+        voteRequest: VoteLegislatorRequest,
         onSuccess: () -> Unit,
         onError: () -> Unit,
     ) {

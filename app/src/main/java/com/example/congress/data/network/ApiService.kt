@@ -13,6 +13,7 @@ import com.example.congress.data.model.MemberMyInfoResponse
 import com.example.congress.data.model.MemberSignInRequest
 import com.example.congress.data.model.MyPageLegislatorResponse
 import com.example.congress.data.model.MyPageVoteResponse
+import com.example.congress.data.model.VoteLegislatorRequest
 import com.example.congress.data.model.VoteRequest
 import com.example.congress.data.model.VoteResponse
 import com.example.congress.data.model.VoteTotalResponse
@@ -97,7 +98,7 @@ interface ApiService {
 
     @POST("/v1/vote/legislator")
     suspend fun postVoteLegislator(
-        @Body vote: VoteRequest,
+        @Body vote: VoteLegislatorRequest,
     ): VoteResponse
 
     @GET("/v1/vote/{legislatorName}/legislator/total")

@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
-import com.example.congress.data.model.VoteRequest
+import com.example.congress.data.model.VoteLegislatorRequest
 import com.example.congress.databinding.ActivityRevisionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +18,9 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.getLegislatorMemberDetail(userId = userId.toString(), legislatorName = legislatorName.toString())
+        viewModel.getVoteLegislatorTotal(legislatorName = legislatorName.toString())
+
         observeLegislatorDetail()
         viewModel.voteTotal.observe(this) { response ->
             response?.let {
@@ -32,8 +35,6 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
         super.initView()
         userId = intent.getStringExtra("USER_ID")
         legislatorName = intent.getStringExtra("LEGISLATOR_NAME")
-        viewModel.getLegislatorMemberDetail(userId = userId.toString(), legislatorName = legislatorName.toString())
-        viewModel.getVoteLegislatorTotal(legislatorName = legislatorName.toString())
 
         postVote(userId.toString(), legislatorName.toString())
 
@@ -72,7 +73,7 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
     ) {
         binding.tvSendRat.setOnClickListener {
             val rating = binding.ratingBar.rating.toInt()
-            val voteRequest = VoteRequest(userId, legislatorName, rating)
+            val voteRequest = VoteLegislatorRequest(userId, legislatorName, rating)
 
             if (rating != 0) {
                 viewModel.postVote(
