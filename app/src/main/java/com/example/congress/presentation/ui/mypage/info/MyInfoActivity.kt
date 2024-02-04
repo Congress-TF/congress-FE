@@ -1,6 +1,7 @@
 package com.example.congress.presentation.ui.mypage.info
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import com.example.congress.R
@@ -55,6 +56,7 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
             val memberUpdateRequest = MemberSignInRequest(nickname, gender, age, userId.toString())
 
             viewModel.putMemberUpdate(memberUpdateRequest)
+            Toast.makeText(this, "닉네임 : $nickname, 성별 : $gender, 연령 : $age", Toast.LENGTH_SHORT).show()
         }
     }
 

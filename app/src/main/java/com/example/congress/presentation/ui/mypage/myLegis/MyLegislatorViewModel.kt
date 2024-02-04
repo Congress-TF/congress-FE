@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.congress.base.BaseViewModel
 import com.example.congress.data.model.MyPageLegislatorResponse
-import com.example.congress.data.model.VoteTotalResponse
 import com.example.congress.domain.usecase.MyPageLegislatorUseCaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,8 +17,6 @@ class MyLegislatorViewModel @Inject constructor(
     private val _legislatorLists = MutableLiveData<MyPageLegislatorResponse>()
     val legislatorLists: LiveData<MyPageLegislatorResponse> = _legislatorLists
 
-    private val _voteTotal = MutableLiveData<VoteTotalResponse>()
-    val voteTotal: LiveData<VoteTotalResponse> = _voteTotal
 
     fun getLegislatorLists(userId: String) {
         viewModelScope.launch {

@@ -78,6 +78,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // Lottie Animation
+    implementation("com.airbnb.android:lottie:6.1.0")
 }
 
 kapt {

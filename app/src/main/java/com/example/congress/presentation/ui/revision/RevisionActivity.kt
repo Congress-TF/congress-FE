@@ -1,6 +1,7 @@
 package com.example.congress.presentation.ui.revision
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
@@ -18,16 +19,7 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getLegislatorMemberDetail(userId = userId.toString(), legislatorName = legislatorName.toString())
-        viewModel.getVoteLegislatorTotal(legislatorName = legislatorName.toString())
-
-        observeLegislatorDetail()
-        viewModel.voteTotal.observe(this) { response ->
-            response?.let {
-                binding.tvScore.text = response.payload.toString()
-            }
-        }
-
+        fetchData()
         initView()
     }
 
@@ -41,7 +33,26 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
         moveToBack()
     }
 
-    private fun observeLegislatorDetail() {
+
+    private fun fetchData() {
+        showLoadingAnimation()
+        hideOtherViews()
+
+        viewModel.getLegislatorMemberDetail(userId = userId.toString(), legislatorName = legislatorName.toString())
+        viewModel.getVoteLegislatorTotal(legislatorName = legislatorName.toString())
+
+        observeData()
+    }
+
+
+    private fun observeData() {
+        viewModel.voteTotal.observe(this) { response ->
+            response?.let {
+                binding.tvScore.text = response.payload.toString()
+                hideLoadingIfDataReceived()
+            }
+        }
+
         viewModel.lawLegislator.observe(this) { response ->
             response?.let {
                 binding.tvHgNm.text = response.payload?.hgNm.toString()
@@ -56,6 +67,7 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
                 binding.tvSjOne.text = response.payload?.profileSjOne.toString()
                 binding.tvDateTwo.text = response.payload?.frToDateTwo.toString()
                 binding.tvSjTwo.text = response.payload?.profileSjTwo.toString()
+                hideLoadingIfDataReceived()
             }
         }
     }
@@ -87,6 +99,31 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
                     }
                 )
             }
+        }
+    }
+
+    private fun hideOtherViews() {
+        binding.clToolbar.visibility = View.GONE
+        binding.nestedScrollView.visibility = View.GONE
+    }
+
+    private fun showOtherViews() {
+        binding.clToolbar.visibility = View.VISIBLE
+        binding.nestedScrollView.visibility = View.VISIBLE
+    }
+
+    private fun showLoadingAnimation() {
+        binding.lottieLoading.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingAnimation() {
+        binding.lottieLoading.visibility = View.GONE
+    }
+
+    private fun hideLoadingIfDataReceived() {
+        if (viewModel.voteTotal.value != null && viewModel.lawLegislator.value != null) {
+            hideLoadingAnimation()
+            showOtherViews()
         }
     }
 }

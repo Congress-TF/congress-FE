@@ -17,7 +17,6 @@ class MyActViewModel @Inject constructor(
     private val _actLists = MutableLiveData<MyPageVoteResponse>()
     val actLists: LiveData<MyPageVoteResponse> = _actLists
 
-
     fun getActLists(userId: String) {
         viewModelScope.launch {
             val actList = myPageActUseCaseUseCase(

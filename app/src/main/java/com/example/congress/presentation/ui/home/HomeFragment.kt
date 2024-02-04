@@ -1,5 +1,6 @@
 package com.example.congress.presentation.ui.home
 
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.congress.R
@@ -33,18 +34,23 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
 
     private fun observeLawLists() {
         viewModel.lawLists.observe(viewLifecycleOwner) { lawLists ->
-            actList.clear()
-            lawLists.payload?.forEach { lawItem ->
-                val actModel = ActHomeModel(
-                    type = "Act",
-                    title = lawItem.billNm,
-                    person = lawItem.proposer,
-                    session = lawItem.proposerDt,
-                    star = lawItem.score.toString()
-                )
-                actList.add(actModel)
+            if (lawLists.payload.isNullOrEmpty()) {
+                showLoadingAnimation()
+            } else {
+                hideLoadingAnimation()
+                actList.clear()
+                lawLists.payload?.forEach { lawItem ->
+                    val actModel = ActHomeModel(
+                        type = "Act",
+                        title = lawItem.billNm,
+                        person = lawItem.proposer,
+                        session = lawItem.proposerDt,
+                        star = lawItem.score.toString()
+                    )
+                    actList.add(actModel)
+                }
+                actHomeAdapter.setActList(actList)
             }
-            actHomeAdapter.setActList(actList)
         }
         viewModel.getLawLists()
     }
@@ -53,5 +59,14 @@ class HomeFragment(userId: String) : BaseFragment<FragmentHomeBinding>(R.layout.
         actHomeAdapter = ActHomeAdapter(userId)
         binding.rvHome.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHome.adapter = actHomeAdapter
+    }
+
+
+    private fun showLoadingAnimation() {
+        binding.lottieLoading.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingAnimation() {
+        binding.lottieLoading.visibility = View.GONE
     }
 }

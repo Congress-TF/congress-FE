@@ -53,6 +53,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_with_google" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

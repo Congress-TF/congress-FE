@@ -7,34 +7,35 @@ import com.example.congress.base.BaseActivity
 import com.example.congress.data.model.MyActModel
 import com.example.congress.databinding.ActivityMyActBinding
 import com.example.congress.presentation.adapter.MyActAdapter
+import com.example.congress.presentation.ui.act.ActViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_act) {
     private val viewModel: MyActViewModel by viewModels()
+    private val actViewModel: ActViewModel by viewModels()
+
     private lateinit var adapter: MyActAdapter
     private var userId: String? = null
-
     private val myActList: MutableList<MyActModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userId = intent.getStringExtra("USER_ID")
-        initView()
+        viewModel.getActLists(userId = userId.toString())
         observeLawLists()
+        initView()
         moveToBack()
     }
 
     override fun initView() {
         super.initView()
         setAdapter()
-        viewModel.getActLists(userId = userId.toString())
     }
 
-    private fun moveToBack() {
-        binding.ivBack.setOnClickListener {
-            finish()
-        }
+    override fun onResume() {
+        super.onResume()
+        viewModel.getActLists(userId.toString())
     }
 
     private fun observeLawLists() {
@@ -52,13 +53,22 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
                     )
                     myActList.add(actModel)
                 }
-                adapter.setActList(myActList)
+                adapter.setActList(myActList) // Adapter에 새로운 데이터를 설정
+                adapter.notifyDataSetChanged() // RecyclerView에 데이터 변경 알림
             }
         }
     }
+
 
     private fun setAdapter() {
         adapter = MyActAdapter(userId = userId.toString())
         binding.rvHome.adapter = adapter
     }
+
+    private fun moveToBack() {
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+    }
+
 }
