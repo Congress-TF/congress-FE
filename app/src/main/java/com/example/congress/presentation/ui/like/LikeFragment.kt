@@ -1,5 +1,6 @@
 package com.example.congress.presentation.ui.like
 
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.congress.R
 import com.example.congress.base.BaseFragment
@@ -14,7 +15,7 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
     private lateinit var viewModel: LikeViewModel
     private val userId = userId
 
-    private val legislatorList : MutableList<LegislatorModel> = mutableListOf()
+    private val legislatorList: MutableList<LegislatorModel> = mutableListOf()
 
     override fun createView(binding: FragmentLikeBinding) {
         viewModel = ViewModelProvider(this).get(LikeViewModel::class.java)
@@ -28,16 +29,21 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
 
     private fun observeLegislatorLists() {
         viewModel.legislatorList.observe(viewLifecycleOwner) { lawLists ->
-            legislatorList.clear()
-            lawLists.payload?.forEach { lawItem ->
-                val legislator = LegislatorModel(
-                    name = lawItem.name,
-                    section = lawItem.section,
-                    unit = lawItem.unit
-                )
-                legislatorList.add(legislator)
+            if (lawLists.payload.isNullOrEmpty()) {
+                showLoadingAnimation()
+            } else {
+                hideLoadingAnimation()
+                legislatorList.clear()
+                lawLists.payload?.forEach { lawItem ->
+                    val legislator = LegislatorModel(
+                        name = lawItem.name,
+                        section = lawItem.section,
+                        unit = lawItem.unit
+                    )
+                    legislatorList.add(legislator)
+                }
+                adapter.setActList(legislatorList)
             }
-            adapter.setActList(legislatorList)
         }
         viewModel.getLegislatorList()
     }
@@ -48,5 +54,13 @@ class LikeFragment(userId: String) : BaseFragment<FragmentLikeBinding>(R.layout.
         binding.rvHome.adapter = adapter
 
         adapter.setActList(legislatorList)
+    }
+
+    private fun showLoadingAnimation() {
+        binding.lottieLoading.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingAnimation() {
+        binding.lottieLoading.visibility = View.GONE
     }
 }

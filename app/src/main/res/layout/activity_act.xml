@@ -40,6 +40,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
@@ -218,7 +219,7 @@
                     android:layout_weight="4"
                     android:max="76"
                     android:progressDrawable="@drawable/progress"
-                    app:layout_constraintEnd_toStartOf="@+id/textView11"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_11"
                     tools:progress="10" />
@@ -236,21 +237,11 @@
                     app:layout_constraintTop_toTopOf="@+id/progress" />
 
                 <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="76표"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_11" />
-
-                <TextView
                     android:id="@+id/tv_think"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:text="법안에 대한 개정 필요도를 알려주세요!"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/progress" />
@@ -260,7 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/bg_my_act"
                     android:padding="4dp"
                     android:text="전송"
@@ -269,44 +260,42 @@
                     app:layout_constraintStart_toEndOf="@+id/tv_think"
                     app:layout_constraintTop_toBottomOf="@+id/progress" />
 
-                  <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_think">
 
 
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="개정 필요도"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                      <TextView
-                          android:id="@+id/textView8"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginStart="16dp"
-                          android:text="개정 필요도"
-                          app:layout_constraintBottom_toBottomOf="parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintTop_toTopOf="parent" />
 
-
-                      <RatingBar
-                          android:id="@+id/ratingBar"
-                          style="@android:style/Widget.DeviceDefault.Light.RatingBar"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginStart="16dp"
-                          android:layout_marginEnd="16dp"
-                          android:numStars="5"
-                          android:rating="0"
-                          android:stepSize="1"
-                          app:layout_constraintBottom_toBottomOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintStart_toEndOf="@+id/textView8"
-                          app:layout_constraintTop_toTopOf="parent" />
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="@android:style/Widget.DeviceDefault.Light.RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView8"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_12"
@@ -346,8 +335,10 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:padding="16dp"
+                    android:layout_marginTop="48dp"
                     android:text="많이 언급된 키워드"
+                    android:background="@drawable/bg_my_act"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cl_score" />
@@ -397,7 +388,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_first" />
-
 
                     <TextView
                         android:id="@+id/tv_third"
@@ -472,6 +462,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/lottie_loading"
+            android:visibility="visible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

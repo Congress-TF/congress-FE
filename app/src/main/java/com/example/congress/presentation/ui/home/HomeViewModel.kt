@@ -18,8 +18,6 @@ class HomeViewModel @Inject constructor(
     private val _lawLists = MutableLiveData<LawListsResponse>()
     val lawLists: LiveData<LawListsResponse> = _lawLists
 
-
-
     fun getLawLists() {
         viewModelScope.launch {
             val lawList = lawListsUseCase()
@@ -27,5 +25,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
+    fun updateLawLists() {
+        getLawLists()
+    }
 }

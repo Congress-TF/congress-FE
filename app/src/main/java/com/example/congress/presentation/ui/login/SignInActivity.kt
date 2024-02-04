@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
@@ -48,6 +49,7 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 putExtra("USER_ID", userId)
             }
             startActivity(intent)
+            Toast.makeText(this, "${nickname}님 가입이 완료되었어요!", Toast.LENGTH_LONG).show()
             finish()
         }
 

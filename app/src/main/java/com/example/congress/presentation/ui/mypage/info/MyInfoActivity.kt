@@ -1,6 +1,7 @@
 package com.example.congress.presentation.ui.mypage.info
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import com.example.congress.R
@@ -48,13 +49,18 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
 
 
         binding.tvComplete.setOnClickListener {
-            val nickname = viewModel.nickname.toString()
+            val nickname = viewModel.nickname
             val gender = viewModel.gender.value.toString()
             val age = viewModel.age.value.toString()
 
-            val memberUpdateRequest = MemberSignInRequest(nickname, gender, age, userId.toString())
+            val memberUpdateRequest = MemberSignInRequest(nickname.toString(), gender, age, userId.toString())
 
             viewModel.putMemberUpdate(memberUpdateRequest)
+            Toast.makeText(this, "내 정보를 수정했어요", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.nickname.observe(this) {
+            updateCompleteButtonState()
         }
     }
 
@@ -92,5 +98,22 @@ class MyInfoActivity : BaseActivity<ActivityMyInfoBinding>(R.layout.activity_my_
         yearPicker.minValue = 1900
         yearPicker.maxValue = currentYear
         yearPicker.value = currentYear
+    }
+
+    private fun updateCompleteButtonState() {
+        val nickFlag = viewModel.nickname.value
+
+        // null 체크와 값이 비어 있는지 확인
+        if (!nickFlag.isNullOrEmpty()) {
+            with(binding.tvComplete) {
+                setBackgroundResource(R.drawable.bg_abled_btn)
+                isEnabled = true
+            }
+        } else {
+            with(binding.tvComplete) {
+                setBackgroundResource(R.drawable.bg_disabled_btn)
+                isEnabled = false
+            }
+        }
     }
 }

@@ -11,13 +11,13 @@ data class LawDetailResponse(
 
 data class LawDetailPayload(
     @field:Json(name = "billNo")
-    val billNo: String,
+    val billNo: String?,
     @field:Json(name = "billNm")
-    val billNm: String,
+    val billNm: String?,
     @field:Json(name = "proposer")
-    val proposer: String,
+    val proposer: String?,
     @field:Json(name = "proposerDt")
-    val proposerDt: String,
+    val proposerDt: String?,
     @field:Json(name = "detailLink")
-    val detailLink: String,
+    val detailLink: String?,
 )

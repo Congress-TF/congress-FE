@@ -16,6 +16,7 @@ import com.example.congress.domain.usecase.LawDetailUseCase
 import com.example.congress.domain.usecase.LawVoteUseCase
 import com.example.congress.domain.usecase.VoteTotalUseCase
 import com.example.congress.domain.usecase.VoteUseCase
+import com.example.congress.presentation.ui.home.HomeViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
