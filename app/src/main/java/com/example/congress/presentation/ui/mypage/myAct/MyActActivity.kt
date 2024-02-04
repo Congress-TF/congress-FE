@@ -40,17 +40,21 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
 
     private fun observeLawLists() {
         viewModel.actLists.observe(this) { lawLists ->
-            myActList.clear()
-            lawLists.payload?.forEach { lawItem ->
-                val actModel = MyActModel(
-                    title = lawItem.lawName,
-                    hashtag = lawItem.hashtag,
-                    score = lawItem.score,
-                    totalScore = lawItem.totalScore
-                )
-                myActList.add(actModel)
+            if (lawLists.payload.isNullOrEmpty()) {
+                binding.tvSorting.text = "아직 개정 필요도에 투표 하지 않았어요"
+            } else {
+                myActList.clear()
+                lawLists.payload.forEach { lawItem ->
+                    val actModel = MyActModel(
+                        title = lawItem.lawName,
+                        hashtag = lawItem.hashtag,
+                        score = lawItem.score,
+                        totalScore = lawItem.totalScore
+                    )
+                    myActList.add(actModel)
+                }
+                adapter.setActList(myActList)
             }
-            adapter.setActList(myActList)
         }
     }
 

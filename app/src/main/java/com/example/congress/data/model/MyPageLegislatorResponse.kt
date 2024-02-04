@@ -6,7 +6,7 @@ data class MyPageLegislatorResponse(
     @field:Json(name = "result")
     val result: ApiResponse?,
     @field:Json(name = "payload")
-    val payload: MyPageLegislatorPayload?,
+    val payload: List<MyPageLegislatorPayload>?,
 )
 
 data class MyPageLegislatorPayload(

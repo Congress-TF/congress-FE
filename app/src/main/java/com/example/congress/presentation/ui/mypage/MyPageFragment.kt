@@ -7,6 +7,7 @@ import com.example.congress.base.BaseFragment
 import com.example.congress.databinding.FragmentMyPageBinding
 import com.example.congress.presentation.ui.mypage.info.MyInfoActivity
 import com.example.congress.presentation.ui.mypage.myAct.MyActActivity
+import com.example.congress.presentation.ui.mypage.myLegis.MyLegisLegislatorActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +27,9 @@ class MyPageFragment(private var userId: String) :
         binding.tvMyAct.setOnClickListener {
             moveToMyAct()
         }
+        binding.tvMyLegislator.setOnClickListener {
+            moveToMyLegislator()
+        }
         binding.tvSignOut.setOnClickListener {
             viewModel.deleteMemberSignOut(userId)
         }
@@ -44,6 +48,15 @@ class MyPageFragment(private var userId: String) :
     private fun moveToMyAct() {
         activity?.let {
             val intent = Intent(it, MyActActivity::class.java).apply {
+                putExtra("USER_ID", userId)
+            }
+            it.startActivity(intent)
+        }
+    }
+
+    private fun moveToMyLegislator() {
+        activity?.let {
+            val intent = Intent(it, MyLegisLegislatorActivity::class.java).apply {
                 putExtra("USER_ID", userId)
             }
             it.startActivity(intent)

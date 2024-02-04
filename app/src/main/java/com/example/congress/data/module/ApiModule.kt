@@ -14,6 +14,7 @@ import com.example.congress.data.repository.MemberSignInRepositoryImpl
 import com.example.congress.data.repository.MemberSignOutRepositoryImpl
 import com.example.congress.data.repository.MemberUpdateRepositoryImpl
 import com.example.congress.data.repository.MyPageActRepositoryImpl
+import com.example.congress.data.repository.MyPageLegislatorRepositoryImpl
 import com.example.congress.data.repository.VoteRepositoryImpl
 import com.example.congress.data.repository.VoteTotalRepositoryImpl
 import com.example.congress.data.utils.AppInterceptor
@@ -30,6 +31,7 @@ import com.example.congress.domain.repository.MemberSignInRepository
 import com.example.congress.domain.repository.MemberSignOutRepository
 import com.example.congress.domain.repository.MemberUpdateRepository
 import com.example.congress.domain.repository.MyPageActRepository
+import com.example.congress.domain.repository.MyPageLegislatorRepository
 import com.example.congress.domain.repository.VoteRepository
 import com.example.congress.domain.repository.VoteTotalRepository
 import com.squareup.moshi.Moshi
@@ -180,5 +182,11 @@ class ApiModule {
     @Provides
     fun provideMyPageActRepository(apiService: ApiService): MyPageActRepository {
         return MyPageActRepositoryImpl(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMyPageLegislatorRepository(apiService: ApiService): MyPageLegislatorRepository {
+        return MyPageLegislatorRepositoryImpl(apiService)
     }
 }
