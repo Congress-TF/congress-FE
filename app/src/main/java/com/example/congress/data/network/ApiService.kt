@@ -100,7 +100,7 @@ interface ApiService {
         @Body vote: VoteRequest,
     ): VoteResponse
 
-    @GET("/v1/vote/{legislatorName}/total")
+    @GET("/v1/vote/{legislatorName}/legislator/total")
     suspend fun getVoteLegislatorTotal(
         @Path("legislatorName") legislatorName: String,
     ): VoteTotalResponse

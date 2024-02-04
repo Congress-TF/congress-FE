@@ -1,9 +1,11 @@
 package com.example.congress.presentation.ui.revision
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.congress.R
 import com.example.congress.base.BaseActivity
+import com.example.congress.data.model.VoteRequest
 import com.example.congress.databinding.ActivityRevisionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +18,13 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        observeLegislatorDetail()
+        viewModel.voteTotal.observe(this) { response ->
+            response?.let {
+                binding.tvScore.text = response.payload.toString()
+            }
+        }
+
         initView()
     }
 
@@ -26,8 +35,8 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
         viewModel.getLegislatorMemberDetail(userId = userId.toString(), legislatorName = legislatorName.toString())
         viewModel.getVoteLegislatorTotal(legislatorName = legislatorName.toString())
 
-        observeLegislatorDetail()
-        observeVoteTotal()
+        postVote(userId.toString(), legislatorName.toString())
+
         moveToBack()
     }
 
@@ -56,10 +65,26 @@ class RevisionActivity : BaseActivity<ActivityRevisionBinding>(R.layout.activity
         }
     }
 
-    private fun observeVoteTotal() {
-        viewModel.voteTotal.observe(this) { response ->
-            response?.let {
-                binding.tvScore.text = response.payload.toString()
+
+    private fun postVote(
+        userId: String,
+        legislatorName: String,
+    ) {
+        binding.tvSendRat.setOnClickListener {
+            val rating = binding.ratingBar.rating.toInt()
+            val voteRequest = VoteRequest(userId, legislatorName, rating)
+
+            if (rating != 0) {
+                viewModel.postVote(
+                    voteRequest,
+                    onSuccess = {
+                        viewModel.getVoteLegislatorTotal(legislatorName)
+                        Toast.makeText(this, "의정활동 참여도에 투표했어요", Toast.LENGTH_SHORT).show()
+                    },
+                    onError = {
+                        Toast.makeText(this, "투표에 실패했어요", Toast.LENGTH_SHORT).show()
+                    }
+                )
             }
         }
     }

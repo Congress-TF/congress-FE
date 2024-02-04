@@ -185,8 +185,11 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
                     voteRequest,
                     onSuccess = {
                         viewModel.getVoteTotal(lawName)
+                        Toast.makeText(this, "개정 필요도에 투표했어요", Toast.LENGTH_SHORT).show()
                     },
-                    onError = {}
+                    onError = {
+                        Toast.makeText(this, "투표에 실패했어요", Toast.LENGTH_SHORT).show()
+                    }
                 )
             }
         }
