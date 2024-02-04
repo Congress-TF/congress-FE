@@ -6,7 +6,7 @@ data class MyPageVoteResponse(
     @field:Json(name = "result")
     val result: ApiResponse?,
     @field:Json(name = "payload")
-    val payload: MyPageVotePayload?,
+    val payload: List<MyPageVotePayload>?,
 )
 
 data class MyPageVotePayload(

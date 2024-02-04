@@ -100,7 +100,6 @@ class ActViewModel @Inject constructor(
             try {
                 val response = voteUseCase.invoke(voteRequest)
                 if (response.result?.code == 200) {
-                    getVoteTotal(voteRequest.lawName)
                     onSuccess.invoke()
                 } else {
                     onError.invoke()
@@ -121,7 +120,6 @@ class ActViewModel @Inject constructor(
             try {
                 val response = hashtagSaveUseCase.invoke(hashtagSaveRequest)
                 if (response.result?.code == 200) {
-                    getHashtagRank(hashtagSaveRequest.lawName)
                     onSuccess.invoke()
                 } else {
                     onError.invoke()

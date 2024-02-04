@@ -30,6 +30,22 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
         observeVoteTotal()
         observeLawDetail()
         observeLawVote()
+
+        viewModel.voteTotal.observe(this) { response ->
+            response?.let {
+                binding.tvScore.text = response.payload.toString()
+            }
+        }
+
+        viewModel.hashtagRank.observe(this) { response ->
+            response?.let {
+                if (it.payload.isNullOrEmpty()) {
+                    showEmptyHashtagsMessage()
+                } else {
+                    displayHashtags(it.payload)
+                }
+            }
+        }
     }
 
     override fun initView() {
@@ -168,15 +184,13 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
                 viewModel.postVote(
                     voteRequest,
                     onSuccess = {
-                        binding.edtHashtag.setText("")
-                        observeVoteTotal()
+                        viewModel.getVoteTotal(lawName)
                     },
                     onError = {}
                 )
             }
         }
     }
-
 
     private fun postHashtag(
         userId: String,
@@ -187,13 +201,13 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
 
             val hashtagSaveRequest = HashtagSaveRequest(userId, lawName, hashtag)
 
-            if (!hashtag.isNullOrEmpty()) {
+            if (hashtag.isNotEmpty()) {
                 viewModel.postHashtagSave(
                     hashtagSaveRequest,
                     onSuccess = {
+                        viewModel.getHashtagRank(lawName)
                         binding.edtHashtag.setText("")
                         Toast.makeText(this, "의견을 남겼어요", Toast.LENGTH_SHORT).show()
-                        observeHashtagRank()
                     },
                     onError = {
                         Toast.makeText(this, "의견을 남기는데 실패했어요", Toast.LENGTH_SHORT).show()
@@ -202,6 +216,7 @@ class ActActivity : BaseActivity<ActivityActBinding>(R.layout.activity_act) {
             }
         }
     }
+
 
 
 }

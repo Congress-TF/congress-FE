@@ -42,40 +42,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/ic_person"
-                app:layout_constraintBottom_toTopOf="@+id/tv_news_session"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_news_title" />
-
-            <TextView
-                android:id="@+id/tv_news_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:text="제안자"
-                android:textColor="@color/gray_4"
-                android:textSize="13sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/tv_news_title" />
-
-
-            <TextView
-                android:id="@+id/tv_news_session"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="제안일자"
-                android:textColor="@color/gray_4"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_news_person" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,7 +160,7 @@
                 app:layout_constraintTop_toTopOf="@id/view2" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_hashtag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -215,9 +181,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:gravity="center_horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView">
+                app:layout_constraintBottom_toBottomOf="@+id/tv_hashtag"
+                app:layout_constraintEnd_toEndOf="@+id/tv_hashtag"
+                app:layout_constraintTop_toTopOf="@+id/tv_hashtag">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -233,6 +199,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_score"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"

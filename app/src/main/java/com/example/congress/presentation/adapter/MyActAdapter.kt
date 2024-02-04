@@ -3,29 +3,34 @@ package com.example.congress.presentation.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.congress.data.model.MyActModel
 import com.example.congress.databinding.ItemMyActBinding
 import com.example.congress.presentation.ui.act.ActActivity
 
-class MyActAdapter : RecyclerView.Adapter<MyActAdapter.ViewHolder>() {
-    private lateinit var itemClickListener: OnItemClickListener
+class MyActAdapter(
+    userId: String,
+) : RecyclerView.Adapter<MyActAdapter.ViewHolder>() {
     private var myActList = listOf<MyActModel>()
+    private var userId = userId
+
 
     inner class ViewHolder(val binding: ItemMyActBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MyActModel) {
             binding.apply {
                 tvNewsTitle.text = item.title
-                tvNewsPerson.text = item.person
-                tvNewsSession.text = item.session
-            }
-        }
-        init {
-            binding.tvDetail.setOnClickListener { view ->
-                val intent = Intent(view.context, ActActivity::class.java)
-                view.context.startActivity(intent)
+                tvStar.text = item.totalScore.toString()
+                tvHashtag.text = "#${item.hashtag}"
+                tvScore.text = "${item.score.toString()}"
+
+                tvDetail.setOnClickListener { view ->
+                    val intent = Intent(view.context, ActActivity::class.java).apply {
+                        putExtra("USER_ID", userId)
+                        putExtra("LAW_NAME", item.title)
+                    }
+                    view.context.startActivity(intent)
+                }
             }
         }
     }

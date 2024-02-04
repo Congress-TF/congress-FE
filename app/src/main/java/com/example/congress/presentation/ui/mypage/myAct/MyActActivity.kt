@@ -15,22 +15,13 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
     private lateinit var adapter: MyActAdapter
     private var userId: String? = null
 
-    private val myActList = listOf(
-        MyActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        MyActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        MyActModel(type = "Type", title = "의안명 3", person = "제안자 3", session = "제안회기 3"),
-        MyActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        MyActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        MyActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-        MyActModel(type = "Type", title = "의안명 3", person = "제안자 3", session = "제안회기 3"),
-        MyActModel(type = "Type", title = "의안명 1", person = "제안자 1", session = "제안회기 1"),
-        MyActModel(type = "Type", title = "의안명 2", person = "제안자 2", session = "제안회기 2"),
-    )
+    private val myActList: MutableList<MyActModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userId = intent.getStringExtra("USER_ID")
         viewModel.getActLists(userId = userId.toString())
+        observeLawLists()
 
         initView()
         moveToBack()
@@ -47,14 +38,27 @@ class MyActActivity : BaseActivity<ActivityMyActBinding>(R.layout.activity_my_ac
         }
     }
 
+    private fun observeLawLists() {
+        viewModel.actLists.observe(this) { lawLists ->
+            myActList.clear()
+            lawLists.payload?.forEach { lawItem ->
+                val actModel = MyActModel(
+                    title = lawItem.lawName,
+                    hashtag = lawItem.hashtag,
+                    score = lawItem.score,
+                    totalScore = lawItem.totalScore
+                )
+                myActList.add(actModel)
+            }
+            adapter.setActList(myActList)
+        }
+    }
+
     private fun setAdapter() {
-        adapter = MyActAdapter()
+        adapter = MyActAdapter(userId = userId.toString())
 
         binding.rvHome.adapter = adapter
 
         adapter.setActList(myActList)
     }
-
-
-
 }
