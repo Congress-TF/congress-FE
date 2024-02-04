@@ -11,27 +11,27 @@ data class CongressMemberDetailResponse(
 
 data class CongressMemberDetailPayload(
     @field:Json(name = "hgNm")
-    val hgNm: String,
+    val hgNm: String?,
     @field:Json(name = "bthDate")
-    val bthDate: String,
+    val bthDate: String?,
     @field:Json(name = "sexGbnNm")
-    val sexGbnNm: String,
+    val sexGbnNm: String?,
     @field:Json(name = "reeleGbnNm")
-    val reeleGbnNm: String,
+    val reeleGbnNm: String?,
     @field:Json(name = "units")
-    val units: String,
+    val units: String?,
     @field:Json(name = "unitNm")
-    val unitNm: String,
+    val unitNm: String?,
     @field:Json(name = "polyNm")
-    val polyNm: String,
+    val polyNm: String?,
     @field:Json(name = "origNm")
-    val origNm: String,
+    val origNm: String?,
     @field:Json(name = "ftToDateOne")
-    val ftToDateOne: String,
+    val ftToDateOne: String?,
     @field:Json(name = "profileSjOne")
-    val profileSjOne: String,
+    val profileSjOne: String?,
     @field:Json(name = "frToDateTwo")
-    val frToDateTwo: String,
+    val frToDateTwo: String?,
     @field:Json(name = "profileSjTwo")
-    val profileSjTwo: String
+    val profileSjTwo: String?
 )
