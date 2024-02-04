@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/nav_fragment_act"
-        android:title="법률"
-        android:icon="@drawable/ic_heart"
+        android:title="국회의원"
+        android:icon="@drawable/ic_start"
         android:enabled="true"/>
     <item
         android:id="@+id/nav_fragment_home"
@@ -15,7 +15,7 @@
     <item
         android:id="@+id/nav_fragment_my_page"
         android:title="마이페이지"
-        android:icon="@drawable/ic_my_page"
+        android:icon="@drawable/ic_person"
         android:enabled="true"/>
 
 </menu>

@@ -64,28 +64,30 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/tv_bill_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="의안번호"
+                        android:text=""
                         android:textColor="@color/gray_4"
                         android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_law_title"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="택시운송사업의 발전에 관한 법률 일부개정법률안"
+                        android:layout_marginEnd="16dp"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_bill_no" />
 
                     <ImageView
                         android:id="@+id/imageView"
@@ -95,7 +97,7 @@
                         android:layout_marginTop="20dp"
                         android:src="@drawable/ic_person"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_law_title" />
 
                     <TextView
                         android:id="@+id/tv_news_person"
@@ -107,19 +109,19 @@
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_law_title" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tv_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="34dp"
                         android:layout_marginTop="16dp"
-                        android:text="최인호의원 등 10인"
+                        android:text=""
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintStart_toEndOf="@+id/tv_news_person"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_law_title" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -128,7 +130,7 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="24dp"
-                        android:text="제안회기"
+                        android:text="제안일자"
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,17 +138,18 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_news_person" />
 
                     <TextView
+                        android:id="@+id/tv_dt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="24dp"
-                        android:text="제21대 (2020~2024) 제411회"
+                        android:text=""
                         android:textColor="@color/gray_4"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_person" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -221,9 +224,10 @@
                     tools:progress="10" />
 
                 <TextView
+                    android:id="@+id/tv_vote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10표"
+                    android:text=""
                     android:textColor="@color/gray_4"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="@+id/progress"
@@ -251,7 +255,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/progress" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/tv_send_rat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_my_act"
+                    android:padding="4dp"
+                    android:text="전송"
+                    android:textColor="@color/gray_4"
+                    app:layout_constraintBottom_toTopOf="@+id/cl_score"
+                    app:layout_constraintStart_toEndOf="@+id/tv_think"
+                    app:layout_constraintTop_toBottomOf="@+id/progress" />
+
+                  <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -262,31 +280,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_think">
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="개정 필요도"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="@android:style/Widget.DeviceDefault.Light.RatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:numStars="5"
-                        android:rating="0"
-                        android:stepSize="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView8"
-                        app:layout_constraintTop_toTopOf="parent" />
+                      <TextView
+                          android:id="@+id/textView8"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="16dp"
+                          android:text="개정 필요도"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toTopOf="parent" />
+
+
+                      <RatingBar
+                          android:id="@+id/ratingBar"
+                          style="@android:style/Widget.DeviceDefault.Light.RatingBar"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="16dp"
+                          android:layout_marginEnd="16dp"
+                          android:numStars="5"
+                          android:rating="0"
+                          android:stepSize="1"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintStart_toEndOf="@+id/textView8"
+                          app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_12"
@@ -310,16 +330,27 @@
                         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
                     <TextView
+                        android:id="@+id/tv_score"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:text="147"
+                        android:text=""
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
                         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="많이 언급된 키워드"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_score" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_comment"
@@ -328,35 +359,25 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_score">
+                    app:layout_constraintTop_toBottomOf="@+id/textView9">
 
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="많이 언급된 키워드"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_first"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:background="@drawable/bg_act"
                         android:gravity="center"
                         android:minWidth="0dp"
                         android:minHeight="0dp"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
-                        android:text="#노동자"
+                        android:text=""
                         android:textColor="@color/gray_9"
                         android:textSize="36sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
                     <TextView
@@ -370,7 +391,7 @@
                         android:minHeight="0dp"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
-                        android:text="#처우개선"
+                        android:text=""
                         android:textColor="@color/gray_9"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -390,7 +411,7 @@
                         android:minHeight="0dp"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
-                        android:text="#근로노동법"
+                        android:text=""
                         android:textColor="@color/gray_9"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -424,18 +445,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/editText" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/edt_hashtag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView10"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_send"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
                     app:layout_constraintTop_toBottomOf="@+id/editText" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tv_send"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

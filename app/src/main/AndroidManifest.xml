@@ -65,6 +65,11 @@
             android:exported="true" >
         </activity>
 
+        <activity
+            android:name=".presentation.ui.mypage.myLegis.MyLegisLegislatorActivity"
+            android:exported="true" >
+        </activity>
+
     </application>
 
 </manifest>

@@ -78,7 +78,6 @@ class SignInActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                // 텍스트가 변경될 때마다 뷰모델에 값을 설정합니다.
                 viewModel.setNickname(p0.toString())
             }
         })
